@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="img/autobuba logo.png" type="image/png">
+    <title>Home - AUTOBUBA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="loading.css">
+    <link rel="stylesheet" href="css/cart.css">
+
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="loading.css">
+    <link rel="stylesheet" href="css/cart.css">
+
+    <!-- Flag Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/dfba5e2447.js" crossorigin="anonymous"></script>
+
+    <style>
+        /* Cart Styles from car.html */
+        .cart-cars {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 350px;
+            max-width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 1001;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow-y: auto;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--gray-color);
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .selected-cars-container {
+            margin-top: 40px;
+        }
+
+        .selected-car-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .selected-car-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .selected-car-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .selected-car-info {
+            flex-grow: 1;
+        }
+
+        .selected-car-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .selected-car-price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .selected-car-remove {
+            background: none;
+            border: none;
+            color: var(--gray-color);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .selected-car-remove:hover {
+            color: var(--primary-color);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .empty-cart i {
+            font-size: 50px;
+            color: #e1e1e1;
+            margin-bottom: 15px;
+        }
+
+        .empty-cart p {
+            color: var(--gray-color);
+        }
+
+        .cart-cars.show {
+            display: block;
+        }
+
+        .header__nav__widget a,
+        .header__nav__widget .btn {
+            color: #000;
+            margin-left: 15px;
+        }
+
+        .header__nav__widget .btn {
+            background-color: #d90429;
+            border: none;
+            color: #fff;
+        }
+
+        .badge:hover{
+            transform: scale(1.01) !important;
+        }
+      
+    </style>
+
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-container">
+            <!-- Speedometer -->
+            <div class="speedometer-container">
+                <div class="speedometer">
+                    <div class="speedometer-scale">
+                        <div class="scale-mark mark-0"><span>0</span></div>
+                        <div class="scale-mark mark-20"><span>20</span></div>
+                        <div class="scale-mark mark-40"><span>40</span></div>
+                        <div class="scale-mark mark-60"><span>60</span></div>
+                        <div class="scale-mark mark-80"><span>80</span></div>
+                        <div class="scale-mark mark-100"><span>100</span></div>
+                    </div>
+                    <div class="needle-container">
+                        <div class="needle"></div>
+                        <div class="needle-center"></div>
+                    </div>
+                    <div class="speed-display">
+                        <span id="speed-value">0</span>
+                        <span class="speed-unit">km/h</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Text -->
+            <div class="loading-text">
+                <span>L</span>
+                <span>O</span>
+                <span>A</span>
+                <span>D</span>
+                <span>I</span>
+                <span>N</span>
+                <span>G</span>
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+
+            <!-- AUTOBUBA Text -->
+            <div class="autobuba-text">AUTOBUBA</div>
+        </div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="./index.html">
+                    <img src="img/logo zoom.png" alt="AUTOBUBA" class="img-fluid" style="max-height: 60px;">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-black text-decoration-none mx-4" href="car.html"
+                                data-translate="Cars">Cars</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black text-decoration-none mx-4" href="blog.html"
+                                data-translate="Blog">Blog</a>
+                        </li>
+                       
+                        <li class="nav-item">
+                            <a class="nav-link text-black text-decoration-none mx-4" href="about.html"
+                                data-translate="About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black text-decoration-none mx-4" href="contact.html"
+                                data-translate="Work">Work</a>
+                        </li>
+                    </ul>
+
+                    <div class="language-dropdown mr-4">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-danger dropdown-toggle" type="button" id="languageDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="flag-icon flag-icon-gb"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                                <li><a class="dropdown-item language-option active" href="#" data-lang="en"><span
+                                            class="flag-icon flag-icon-gb"></span> </a></li>
+                                <li><a class="dropdown-item language-option" href="#" data-lang="sq"><span
+                                            class="flag-icon flag-icon-al"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="header-buttons d-flex align-items-center">
+                        <a href="Book a Test Drive.html" class="nav-link mr-2 d-flex align-items-center">
+                            <i class="fa-solid fa-car-side"></i>
+                        </a>
+                        <a id="cart" href="#" class="nav-link mr-2 position-relative d-flex align-items-center">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="badge bg-danger position-absolute" id="cart-count"></span>
+                        </a>
+                        <a href="report.html" class="nav-link mr-3 d-flex align-items-center" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Report a problem">
+                            <i class="fa-solid fa-flag"></i>
+                        </a>
+                        <button onclick="window.open('login.html')" class="btn btn-danger d-none d-sm-inline-block"
+                            data-translate="Log In">Log In</button>
+                        <button onclick="window.open('login.html')"
+                            class="btn btn-sm btn-danger d-inline-block d-sm-none mt-2 w-100"
+                            data-translate="Log In">Log In</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Header Section End -->
+    <!-- Header Section End -->
+
+
+
+    <!-- Hero Section Begin -->
+    <section class="hero spad set-bg" data-setbg="img/Breadcrumb_Img.jpg">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-7 col-md-12 mb-5 mb-lg-0">
+                    <div class="hero__text">
+                        <div class="hero__text__title">
+                            <span data-translate="IT ALL STARTS WITH A DREAM">IT ALL STARTS WITH A DREAM</span>
+                            <h2 class="mb-2"
+                                data-translate="All of those cars were once just a dream in somebody's head. - Peter Gabriel">
+                                All of those cars were once just a dream in somebody's head. - Peter Gabriel</h2>
+                        </div>
+                        <div class="d-flex flex-wrap">
+                            <a href="Book a Test Drive.html" class="primary-btn mr-3 mb-3"><img src="img/wheel.png"
+                                    alt=""> <span data-translate="Test Drive">Test Drive</span></a>
+                            <a href="#trustedName" class="primary-btn more-btn mb-3" data-translate="Learn More">Learn
+                                More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 col-md-12">
+                    <div class="hero__tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                    data-translate="Car Rental">Car Rental</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                    data-translate="Buy Car">Buy Car</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content bg-white p-4">
+                            <!-- Car Rental Form -->
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="hero__tab__form">
+                                    <h2 class="mb-4" data-translate="Rent Your Dream Car">Rent Your Dream Car</h2>
+                                    <form id="rentalForm">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <select class="form-control" name="year" id="rentYear">
+                                                    <option value="" data-translate="Select Year">Select Year</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2015">2015</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <select class="form-control" name="brand" id="rentBrand">
+                                                    <option value="" data-translate="Select Brand">Select Brand</option>
+                                                    <option value="Acura">Acura</option>
+                                                    <option value="Audi">Audi</option>
+                                                    <option value="Bentley">Bentley</option>
+                                                    <option value="BMW">BMW</option>
+                                                    <option value="Bugatti">Bugatti</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <select class="form-control" name="model" id="rentModel">
+                                                    <option value="" data-translate="Select Model">Select Model</option>
+                                                    <option value="Q3">Q3</option>
+                                                    <option value="A4">A4</option>
+                                                    <option value="AVENTADOR">AVENTADOR</option>
+                                                    <option value="X5">X5</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <select class="form-control" name="mileage" id="rentMileage">
+                                                    <option value="" data-translate="Select Mileage">Select Mileage
+                                                    </option>
+                                                    <option value="27">27</option>
+                                                    <option value="25">25</option>
+                                                    <option value="15">15</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="car-price">
+                                            <p data-translate="Price Range:">Price Range:</p>
+                                            <div class="price-range-wrap">
+                                                <div class="price-range"></div>
+                                                <div class="range-slider">
+                                                    <div class="price-input">
+                                                        <input type="text" class="form-control" id="amount" name="price"
+                                                            readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="site-btn w-100 mt-3"
+                                            data-translate="Search">Search</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Buy Car Form -->
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div class="hero__tab__form">
+                                    <h2 class="mb-4" data-translate="Buy Your Dream Car">Buy Your Dream Car</h2>
+                                    <form id="buyForm">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <select class="form-control" name="year" id="buyYear">
+                                                    <option value="" data-translate="Select Year">Select Year</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2015">2015</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <select class="form-control" name="brand" id="buyBrand">
+                                                    <option value="" data-translate="Select Brand">Select Brand</option>
+                                                    <option value="Acura">Acura</option>
+                                                    <option value="Audi">Audi</option>
+                                                    <option value="Bentley">Bentley</option>
+                                                    <option value="BMW">BMW</option>
+                                                    <option value="Bugatti">Bugatti</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <select class="form-control" name="model" id="buyModel">
+                                                    <option value="" data-translate="Select Model">Select Model</option>
+                                                    <option value="Q3">Q3</option>
+                                                    <option value="A4">A4</option>
+                                                    <option value="AVENTADOR">AVENTADOR</option>
+                                                    <option value="X5">X5</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <select class="form-control" name="mileage" id="buyMileage">
+                                                    <option value="" data-translate="Select Mileage">Select Mileage
+                                                    </option>
+                                                    <option value="27">27</option>
+                                                    <option value="25">25</option>
+                                                    <option value="15">15</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="car-price">
+                                            <p data-translate="Price Range:">Price Range:</p>
+                                            <div class="price-range-wrap">
+                                                <div class="buy-price-range"></div>
+                                                <div class="range-slider">
+                                                    <div class="price-input">
+                                                        <input type="text" class="form-control" id="buyAmount"
+                                                            name="price" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="site-btn w-100 mt-3"
+                                            data-translate="Search">Search</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Results Modal -->
+    <div id="searchModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" data-translate="Search Results">Search Results</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="searchResults">
+                        <!-- Results will be populated here -->
+                        <div class="no-results text-center py-4">
+                            <p data-translate="No results found. Try different search criteria.">No results found. Try
+                                different search criteria.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        data-translate="Close">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Section End -->
+
+    <!-- Services Section Begin -->
+    <section class="services spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="section-title">
+                        <span data-translate="Our Services">Our Services</span>
+                        <h2 data-translate="What We Offer">What We Offer</h2>
+                        <p
+                            data-translate="Well-maintained, clean, and sanitized cars, excellent customer service and fast & hassle-free rental process">
+                            Well-maintained, clean, and sanitized cars, excellent customer service and fast &
+                            hassle-free rental process</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="services__item h-100 text-center p-4">
+                        <img src="img/services/services-1.png" alt="" class="img-fluid mb-4">
+                        <h5 data-translate="Renting Cars">Renting Cars</h5>
+                        <p
+                            data-translate="Need a reliable ride? We offer a seamless car rental experience with a wide range of vehicles to fit your needs.">
+                            Need a reliable ride? We offer a seamless car rental experience with a wide range of
+                            vehicles to fit your needs.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="services__item h-100 text-center p-4">
+                        <img src="img/services/services-2.png" alt="" class="img-fluid mb-4">
+                        <h5 data-translate="Buying Cars">Buying Cars</h5>
+                        <p
+                            data-translate="Looking for your next car? We offer a hassle-free buying experience with a selection of high-quality vehicles.">
+                            Looking for your next car? We offer a hassle-free buying experience with a selection of
+                            high-quality vehicles.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="services__item h-100 text-center p-4">
+                        <img src="img/services/services-3.png" alt="" class="img-fluid mb-4">
+                        <h5 data-translate="Quality Assurance">Quality Assurance</h5>
+                        <p
+                            data-translate="Well-maintained, clean, and reliable vehicles, ensuring a safe and comfortable drive every time.">
+                            Well-maintained, clean, and reliable vehicles, ensuring a safe and comfortable drive every
+                            time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End -->
+
+    <!-- Feature Section -->
+    <section id="trustedName" class="feature spad">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Text Content Column -->
+                <div class="col-lg-4 col-md-12 mb-4 "> <!-- Changed mb-5 to mb-4 -->
+                    <div class="feature__text">
+                        <div class="section-title text-left">
+                            <span data-translate="Our Feature">Our Feature</span>
+                            <h2 data-translate="We Are a Trusted Name In Auto">We Are a Trusted Name In Auto</h2>
+                        </div>
+                        <div class="feature__text__desc">
+                            <p class="mb-3"
+                                data-translate="As a trusted name in the automotive industry, we don't just meet expectations—we aim to exceed them. Our commitment to innovation, professionalism, and building lasting relationships has solidified our place as a leader in the field.">
+                                <!-- Reduced paragraph margin -->
+                                As a trusted name in the automotive industry, we don't just meet expectations—we aim to
+                                exceed them. Our commitment to innovation, professionalism, and building lasting
+                                relationships has solidified our place as a leader in the field.
+                            </p>
+                        </div>
+                        <div class="feature__text__btn mt-3"> <!-- Added mt-3 -->
+                            <a href="about.html#testimonies" class="primary-btn partner-btn"
+                                data-translate="Our Reviews">Our Reviews</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature Icons Column -->
+                <div class="col-lg-8 col-md-12 pl-lg-4"> <!-- Added left padding on lg -->
+                    <div class="row g-2"> <!-- Changed gutter to g-2 (smallest spacing) -->
+                        <!-- Feature Items -->
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4 px-1"> <!-- Added px-1 -->
+                            <div class="feature__item text-center p-2"> <!-- Added p-2 -->
+                                <div class="feature__item__icon mb-2"> <!-- Reduced mb-3 to mb-2 -->
+                                    <img src="img/feature/feature-1.png" alt="Engine" class="img-fluid"
+                                        style="max-height: 50px;">
+                                </div>
+                                <h6 class="mb-0" data-translate="Engine">Engine</h6> <!-- Removed bottom margin -->
+                            </div>
+                        </div>
+
+                        <!-- Repeat for other 5 feature items with same structure -->
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4 px-1">
+                            <div class="feature__item text-center p-2">
+                                <div class="feature__item__icon mb-2">
+                                    <img src="img/feature/feature-2.png" alt="Turbo" class="img-fluid"
+                                        style="max-height: 50px;">
+                                </div>
+                                <h6 class="mb-0" data-translate="Turbo">Turbo</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4 px-1">
+                            <div class="feature__item text-center p-2">
+                                <div class="feature__item__icon mb-2">
+                                    <img src="img/feature/feature-3.png" alt="Cooling" class="img-fluid"
+                                        style="max-height: 50px;">
+                                </div>
+                                <h6 class="mb-0" data-translate="Cooling">Cooling</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4 px-1">
+                            <div class="feature__item text-center p-2">
+                                <div class="feature__item__icon mb-2">
+                                    <img src="img/feature/feature-4.png" alt="Suspension" class="img-fluid"
+                                        style="max-height: 50px;">
+                                </div>
+                                <h6 class="mb-0" data-translate="Suspension">Suspension</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4 px-1">
+                            <div class="feature__item text-center p-2">
+                                <div class="feature__item__icon mb-2">
+                                    <img src="img/feature/feature-5.png" alt="Electrical" class="img-fluid"
+                                        style="max-height: 50px;">
+                                </div>
+                                <h6 class="mb-0" data-translate="Electrical">Electrical</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-4 col-sm-4 col-md-4 col-lg-4 px-1">
+                            <div class="feature__item text-center p-2">
+                                <div class="feature__item__icon mb-2">
+                                    <img src="img/feature/feature-6.png" alt="Brakes" class="img-fluid"
+                                        style="max-height: 50px;">
+                                </div>
+                                <h6 class="mb-0" data-translate="Brakes">Brakes</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="car spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <span data-translate="Our Car">Our Car</span>
+                        <h2 data-translate="Best Vehicle Offers">Best Vehicle Offers</h2>
+                    </div>
+                    <ul class="filter__controls">
+                        <li class="active" data-filter="*" data-translate="Most Researched">Most Researched</li>
+                        <li data-filter=".sale" data-translate="Latest on sale">Latest on sale</li>
+                        <li data-filter="*" data-translate="Discount Vehicles">Discount Vehicles</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row car-filter">
+                <!-- CAR 1 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mix">
+                    <div class="car__item">
+                        <div class="car__item__pic position-relative">
+                            <img src="img/cars/car-1.jpg" alt="" class="img-fluid w-100"
+                                style="height: 180px; object-fit: cover;">
+                            <span class="car-option-badge">For Rent</span>
+                        </div>
+                        <div class="car__item__text">
+                            <div class="car__item__text__inner">
+                                <span class="badge bg-light text-dark px-2 py-1 rounded-2 mb-2">2016</span>
+                                <h5><a href="#">Porsche Cayenne Turbo S</a></h5>
+                                <div class="car-specs">
+                                    <div class="car-spec"><span>35,000</span> mi</div>
+                                    <div class="car-spec">Auto</div>
+                                    <div class="car-spec"><span>700</span> hp</div>
+                                </div>
+                            </div>
+                            <div class="car__item__price">
+                                <h6>$218 <span>/mo</span></h6>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div class="car-actions">
+                                        <a href="#" class="btn btn-sm btn-outline-danger add-to-cart-btn" data-id="1"
+                                            data-name="Porsche Cayenne Turbo S" data-price="218"
+                                            data-img="img/cars/car-1.jpg" data-type="rent">
+                                            <i class="fa fa-cart-plus"></i>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-sm btn-outline-danger"><i
+                                                class="fa fa-car"></i></a>
+                                    </div>
+                                    <a href="car-details.html" class="btn btn-sm btn-light view-more">View More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CAR 2 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mix sale">
+                    <div class="car__item">
+                        <div class="car__item__pic position-relative">
+                            <img src="img/cars/car-2.jpg" alt="" class="img-fluid w-100"
+                                style="height: 180px; object-fit: cover;">
+                            <span class="car-option-badge">For Sale</span>
+                        </div>
+                        <div class="car__item__text">
+                            <div class="car__item__text__inner">
+                                <span class="badge bg-light text-dark px-2 py-1 rounded-2 mb-2">2020</span>
+                                <h5><a href="#">Toyota Camry ASV50L-JETEKU</a></h5>
+                                <div class="car-specs">
+                                    <div class="car-spec"><span>35,000</span> mi</div>
+                                    <div class="car-spec">Auto</div>
+                                    <div class="car-spec"><span>700</span> hp</div>
+                                </div>
+                            </div>
+                            <div class="car__item__price">
+                                <h6>$73,900</h6>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div class="car-actions">
+                                        <a href="#" class="btn btn-sm btn-outline-danger add-to-cart-btn" data-id="2"
+                                            data-name="Toyota Camry ASV50L-JETEKU" data-price="73900"
+                                            data-img="img/cars/car-2.jpg" data-type="sale">
+                                            <i class="fa fa-cart-plus"></i>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-sm btn-outline-danger"><i
+                                                class="fa fa-car"></i></a>
+                                    </div>
+                                    <a href="car-details.html" class="btn btn-sm btn-light view-more">View More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CAR 3 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mix">
+                    <div class="car__item">
+                        <div class="car__item__pic position-relative">
+                            <img src="img/cars/car-3.jpg" alt="" class="img-fluid w-100"
+                                style="height: 180px; object-fit: cover;">
+                            <span class="car-option-badge">For Rent</span>
+                        </div>
+                        <div class="car__item__text">
+                            <div class="car__item__text__inner">
+                                <span class="badge bg-light text-dark px-2 py-1 rounded-2 mb-2">2017</span>
+                                <h5><a href="#">BMW S1000RR 2019 M</a></h5>
+                                <div class="car-specs">
+                                    <div class="car-spec"><span>35,000</span> mi</div>
+                                    <div class="car-spec">Auto</div>
+                                    <div class="car-spec"><span>700</span> hp</div>
+                                </div>
+                            </div>
+                            <div class="car__item__price">
+                                <h6>$299 <span>/mo</span></h6>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div class="car-actions">
+                                        <a href="#" class="btn btn-sm btn-outline-danger add-to-cart-btn" data-id="3"
+                                            data-name="BMW S1000RR 2019 M" data-price="299"
+                                            data-img="img/cars/car-3.jpg" data-type="rent">
+                                            <i class="fa fa-cart-plus"></i>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-sm btn-outline-danger"><i
+                                                class="fa fa-car"></i></a>
+                                    </div>
+                                    <a href="car-details.html" class="btn btn-sm btn-light view-more">View More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CAR 4 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mix sale">
+                    <div class="car__item">
+                        <div class="car__item__pic position-relative">
+                            <img src="img/cars/car-4.jpg" alt="" class="img-fluid w-100"
+                                style="height: 180px; object-fit: cover;">
+                            <span class="car-option-badge">For Sale</span>
+                        </div>
+                        <div class="car__item__text">
+                            <div class="car__item__text__inner">
+                                <span class="badge bg-light text-dark px-2 py-1 rounded-2 mb-2">2019</span>
+                                <h5><a href="#">Lamborghini Huracan Evo</a></h5>
+                                <div class="car-specs">
+                                    <div class="car-spec"><span>35,000</span> mi</div>
+                                    <div class="car-spec">Auto</div>
+                                    <div class="car-spec"><span>700</span> hp</div>
+                                </div>
+                            </div>
+                            <div class="car__item__price">
+                                <h6>$120,000</h6>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div class="car-actions">
+                                        <a href="#" class="btn btn-sm btn-outline-danger add-to-cart-btn" data-id="4"
+                                            data-name="Lamborghini Huracan Evo" data-price="120000"
+                                            data-img="img/cars/car-4.jpg" data-type="sale">
+                                            <i class="fa fa-cart-plus"></i>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-sm btn-outline-danger"><i
+                                                class="fa fa-car"></i></a>
+                                    </div>
+                                    <a href="car-details.html" class="btn btn-sm btn-light view-more">View More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CAR 5 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mix">
+                    <div class="car__item">
+                        <div class="car__item__pic position-relative">
+                            <img src="img/cars/car-5.jpg" alt="" class="img-fluid w-100"
+                                style="height: 180px; object-fit: cover;">
+                            <span class="car-option-badge">For Rent</span>
+                        </div>
+                        <div class="car__item__text">
+                            <div class="car__item__text__inner">
+                                <span class="badge bg-light text-dark px-2 py-1 rounded-2 mb-2">2018</span>
+                                <h5><a href="#">Audi Q8 2020</a></h5>
+                                <div class="car-specs">
+                                    <div class="car-spec"><span>35,000</span> mi</div>
+                                    <div class="car-spec">Auto</div>
+                                    <div class="car-spec"><span>700</span> hp</div>
+                                </div>
+                            </div>
+                            <div class="car__item__price">
+                                <h6>$319 <span>/mo</span></h6>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div class="car-actions">
+                                        <a href="#" class="btn btn-sm btn-outline-danger add-to-cart-btn" data-id="5"
+                                            data-name="Audi Q8 2020" data-price="319" data-img="img/cars/car-5.jpg"
+                                            data-type="rent">
+                                            <i class="fa fa-cart-plus"></i>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-sm btn-outline-danger"><i
+                                                class="fa fa-car"></i></a>
+                                    </div>
+                                    <a href="car-details.html" class="btn btn-sm btn-light view-more">View More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CAR 6 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mix sale">
+                    <div class="car__item">
+                        <div class="car__item__pic position-relative">
+                            <img src="img/cars/car-6.jpg" alt="" class="img-fluid w-100"
+                                style="height: 180px; object-fit: cover;">
+                            <span class="car-option-badge">For Sale</span>
+                        </div>
+                        <div class="car__item__text">
+                            <div class="car__item__text__inner">
+                                <span class="badge bg-light text-dark px-2 py-1 rounded-2 mb-2">2016</span>
+                                <h5><a href="#">Mustang Shelby GT500</a></h5>
+                                <div class="car-specs">
+                                    <div class="car-spec"><span>35,000</span> mi</div>
+                                    <div class="car-spec">Auto</div>
+                                    <div class="car-spec"><span>700</span> hp</div>
+                                </div>
+                            </div>
+                            <div class="car__item__price">
+                                <h6>$730,900</h6>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div class="car-actions">
+                                        <a href="#" class="btn btn-sm btn-outline-danger add-to-cart-btn" data-id="6"
+                                            data-name="Mustang Shelby GT500" data-price="730900"
+                                            data-img="img/cars/car-6.jpg" data-type="sale">
+                                            <i class="fa fa-cart-plus"></i>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-sm btn-outline-danger"><i
+                                                class="fa fa-car"></i></a>
+                                    </div>
+                                    <a href="car-details.html" class="btn btn-sm btn-light view-more">View More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CAR 7 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mix">
+                    <div class="car__item">
+                        <div class="car__item__pic position-relative">
+                            <img src="img/cars/car-7.jpg" alt="" class="img-fluid w-100"
+                                style="height: 180px; object-fit: cover;">
+                            <span class="car-option-badge">For Rent</span>
+                        </div>
+                        <div class="car__item__text">
+                            <div class="car__item__text__inner">
+                                <span class="badge bg-light text-dark px-2 py-1 rounded-2 mb-2">2020</span>
+                                <h5><a href="#">Lamborghini Aventador A90</a></h5>
+                                <div class="car-specs">
+                                    <div class="car-spec"><span>35,000</span> mi</div>
+                                    <div class="car-spec">Auto</div>
+                                    <div class="car-spec"><span>700</span> hp</div>
+                                </div>
+                            </div>
+                            <div class="car__item__price">
+                                <h6>$422 <span>/mo</span></h6>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div class="car-actions">
+                                        <a href="#" class="btn btn-sm btn-outline-danger add-to-cart-btn" data-id="7"
+                                            data-name="Lamborghini Aventador A90" data-price="422"
+                                            data-img="img/cars/car-7.jpg" data-type="rent">
+                                            <i class="fa fa-cart-plus"></i>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-sm btn-outline-danger"><i
+                                                class="fa fa-car"></i></a>
+                                    </div>
+                                    <a href="car-details.html" class="btn btn-sm btn-light view-more">View More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CAR 8 -->
+                <div class="col-lg-3 col-md-4 col-sm-6 mix">
+                    <div class="car__item">
+                        <div class="car__item__pic position-relative">
+                            <img src="img/cars/car-8.jpg" alt="" class="img-fluid w-100"
+                                style="height: 180px; object-fit: cover;">
+                            <span class="car-option-badge">For Rent</span>
+                        </div>
+                        <div class="car__item__text">
+                            <div class="car__item__text__inner">
+                                <span class="badge bg-light text-dark px-2 py-1 rounded-2 mb-2">2017</span>
+                                <h5><a href="#">Porsche Cayenne Turbo S</a></h5>
+                                <div class="car-specs">
+                                    <div class="car-spec"><span>35,000</span> mi</div>
+                                    <div class="car-spec">Auto</div>
+                                    <div class="car-spec"><span>700</span> hp</div>
+                                </div>
+                            </div>
+                            <div class="car__item__price">
+                                <h6>$322 <span>/mo</span></h6>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <div class="car-actions">
+                                        <a href="#" class="btn btn-sm btn-outline-danger add-to-cart-btn" data-id="8"
+                                            data-name="Porsche Cayenne Turbo S" data-price="322"
+                                            data-img="img/cars/car-8.jpg" data-type="rent">
+                                            <i class="fa fa-cart-plus"></i>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-sm btn-outline-danger"><i
+                                                class="fa fa-car"></i></a>
+                                    </div>
+                                    <a href="car-details.html" class="btn btn-sm btn-light view-more">View More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Chooseus Section Begin -->
+    <section id="chooseUs" class="chooseus spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="chooseus__text">
+                        <div class="section-title">
+                            <h2 data-translate="Why People Choose Us">Why People Choose Us</h2>
+                            <p
+                                data-translate="People choose us because we deliver unmatched quality, personalized service, and reliability that you can always count on.">
+                                "People choose us because we deliver unmatched quality, personalized service, and
+                                reliability that you can always count on."</p>
+                        </div>
+                        <ul>
+                            <li><i class="fa fa-check-circle"></i> <span
+                                    data-translate="Unmatched quality and attention to detail.">Unmatched quality and
+                                    attention to detail.</span></li>
+                            <li><i class="fa fa-check-circle"></i> <span
+                                    data-translate="Exceptional customer service tailored to your needs.">Exceptional
+                                    customer service tailored to your needs.</span></li>
+                            <li><i class="fa fa-check-circle"></i> <span
+                                    data-translate="Affordable solutions without compromising reliability.">Affordable
+                                    solutions without compromising reliability.</span></li>
+                            <li><i class="fa fa-check-circle"></i> <span
+                                    data-translate="A proven track record of trust and excellence.">A proven track
+                                    record of trust and excellence.</span></li>
+                        </ul>
+                        <a href="about.html" class="primary-btn" data-translate="About Us">About Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chooseus__video set-bg">
+            <img src="img/image.jpg" alt="">
+        </div>
+    </section><br><br><br><br><br>
+    <!-- Chooseus Section End -->
+
+
+    <!-- Footer Section Begin (Unchanged) -->
+    <footer class="footer set-bg" style="background: url(img/footer-bg.jpg);">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <img src="img/logo zoom.png" alt="Autobuba Logo" class="img-fluid">
+                        </div>
+                        <div class="footer__contact-box">
+                            <p><i class="fa fa-envelope"></i> autobuba2025@gmail.com</p>
+                            <p><i class="fa fa-phone"></i> +355 69 311 3209</p>
+                        </div>
+                        <div class="footer__social">
+                            
+                            <a href="https://www.tiktok.com/@autobuba1" class="social-btn tiktok" target="_blank">
+                                <i class="bi bi-tiktok"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/auto_buba?igsh=MWg1b213Y3oxeG1ydg=="
+                                class="social-btn instagram" target="_blank">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="footer__widget">
+                        <h5 data-translate="Navigation">Navigation</h5>
+                        <ul class="list-unstyled footer-links">
+                            <li><a href="contact.html" class="text-decoration-none"><i class="fa fa-angle-right"></i>
+                                    <span data-translate="Contact Us">Contact Us</span></a></li>
+                            <li><a href="car.html" class="text-decoration-none"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Cars">Cars</span></a></li>
+                            <li><a href="blog.html" class="text-decoration-none"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Blog">Blog</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="footer__widget">
+                        <h5 data-translate="Cars">Cars</h5>
+                        <ul class="list-unstyled footer-links">
+                            <li><a href="#" class="text-decoration-none"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Hatchback">Hatchback</span></a></li>
+                            <li><a href="#" class="text-decoration-none"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Sedan">Sedan</span></a></li>
+                            <li><a href="#" class="text-decoration-none"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="SUV">SUV</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer__brand">
+                        <h5 data-translate="Learn">Learn</h5>
+                        <ul class="list-unstyled footer-links">
+                            <li><a href="about.html" class="text-decoration-none"><i class="fa fa-angle-right"></i>
+                                    <span data-translate="About Us">About Us</span></a></li>
+                            <li><a href="#chooseUs" class="text-decoration-none"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Why Us?">Why Us?</span></a></li>
+                            <li><a href="#trustedName" class="text-decoration-none"><i class="fa fa-angle-right"></i>
+                                    <span data-translate="Who are we?">Who are we?</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p class="copyright" data-translate="Copyright">© Copyright 2025 QUOLYTECH. All Rights Reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Simple Phone Button -->
+    <div class="phone-container">
+        <div class="phone-logo" id="phoneLogo">
+            <div class="phone-icon">
+                <i class="fa-solid fa-phone"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <h2 class="modal-title">Contact Information</h2>
+            <p>Please call us at:</p>
+            <div class="modal-number-container">
+                <a href="tel:+69 69 690 6969" class="modal-number" id="phoneNumber">+355 69 311 3209</a>
+                <button class="modal-copy-button" id="modalCopyButton">
+                    <svg class="modal-copy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+                    </svg>
+                </button>
+                <span class="copy-tooltip" id="modalTooltip">Copied to clipboard!</span>
+            </div>
+            <button class="close-button" id="closeModal">Close</button>
+        </div>
+    </div>
+
+    <!-- Add the cart sidebar HTML from car.html -->
+    <div class="cart-sidebar" id="cartCars">
+        <div class="cart-header">
+            <h3 data-translate="Your Cart">Your Cart</h3>
+            <button id="closeCartdisplay" class="close-cart">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-body" id="selectedCars">
+            <!-- Cart items will be inserted here dynamically -->
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript" src="cart.js"></script>
+    <script>
+        // Loading screen functionality
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) {
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(function () {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }
+            }, 1500);
+        });
+
+    </script>
+    <script>
+        // Phone button functionality
+        const phoneLogo = document.getElementById('phoneLogo');
+        const contactModal = document.getElementById('contactModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalCopyButton = document.getElementById('modalCopyButton');
+        const modalTooltip = document.getElementById('modalTooltip');
+
+        if (phoneLogo && contactModal && closeModal) {
+            // Open modal
+            phoneLogo.addEventListener('click', function () {
+                contactModal.style.display = 'flex';
+            });
+
+            // Close modal
+            closeModal.addEventListener('click', function () {
+                contactModal.style.display = 'none';
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function (e) {
+                if (e.target === contactModal) {
+                    contactModal.style.display = 'none';
+                }
+            });
+
+            // Copy phone number
+            if (modalCopyButton && modalTooltip) {
+                modalCopyButton.addEventListener('click', function () {
+                    const phoneNumber = document.getElementById('phoneNumber').textContent;
+                    navigator.clipboard.writeText(phoneNumber);
+
+                    modalTooltip.style.opacity = '1';
+                    setTimeout(function () {
+                        modalTooltip.style.opacity = '0';
+                    }, 2000);
+                });
+            }
+        }
+    </script>
+
+
+</body>
+
+<!-- Js Plugins -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.nice-select.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/mixitup.min.js"></script>
+<script src="js/jquery.slicknav.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/main.js"></script>
+<script src="loading.js"></script>
+<script src="js/hero.js"></script>
+<script src="js/index-language-selector.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/cart.js"></script>
+
+
+</html>

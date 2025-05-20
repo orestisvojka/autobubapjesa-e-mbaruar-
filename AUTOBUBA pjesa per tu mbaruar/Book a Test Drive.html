@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/Booking.css">
+    <link rel="stylesheet" href="loading.css">
+    <title>Book A Test Drive - AUTOBUBA</title>
+</head>
+<body>
+    <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loading-container">
+      <!-- Speedometer -->
+      <div class="speedometer-container">
+        <div class="speedometer">
+          <div class="speedometer-scale">
+            <div class="scale-mark mark-0"><span>0</span></div>
+            <div class="scale-mark mark-20"><span>20</span></div>
+            <div class="scale-mark mark-40"><span>40</span></div>
+            <div class="scale-mark mark-60"><span>60</span></div>
+            <div class="scale-mark mark-80"><span>80</span></div>
+            <div class="scale-mark mark-100"><span>100</span></div>
+          </div>
+          <div class="needle-container">
+            <div class="needle"></div>
+            <div class="needle-center"></div>
+          </div>
+          <div class="speed-display">
+            <span id="speed-value">0</span>
+            <span class="speed-unit">km/h</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Loading Text -->
+      <div class="loading-text">
+        <span>L</span>
+        <span>O</span>
+        <span>A</span>
+        <span>D</span>
+        <span>I</span>
+        <span>N</span>
+        <span>G</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+      </div>
+      
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+      
+      <!-- AUTOBUBA Text -->
+      <div class="autobuba-text">AUTOBUBA</div>
+    </div>
+  </div>
+    <div class="container">
+        <div class="header">
+            <div class="logo">AUTOBUBA</div>
+            <div class="cart-icon">🚗</div>
+        </div>
+        
+        <div class="breadcrumb">
+            <span id="step1" class="active">Car Selection</span>
+            <span>›</span>
+            <span id="step2">Test Drive</span>
+            <span>›</span>
+            <span id="step3">Confirmation</span>
+        </div>
+
+        <!-- Page 1: Car Selection -->
+        <div id="page1" class="page active">
+            <h2 class="section-title">Select a Car for Test Drive</h2>
+            
+            <div class="car-cards" id="carCards">
+                <div class="car-card" data-model="sedan">
+                    <div class="car-image" style="background-image: url('img/car\ placeholder.webp')"></div>
+                    <div class="car-info">
+                        <div class="car-model">AUTOBUBA Sedan</div>
+                        <div class="car-description">Luxury sedan with premium features and smooth handling</div>
+                        <div class="car-specs">
+                            <div class="car-spec">⚡ 280 HP</div>
+                            <div class="car-spec">🛢 32 MPG</div>
+                            <div class="car-spec">🔄 Automatic</div>
+                        </div>
+                        <div class="color-options">
+                            <div class="color-option color-red selected" data-color="Red"></div>
+                            <div class="color-option color-black" data-color="Black"></div>
+                            <div class="color-option color-white" data-color="White"></div>
+                            <div class="color-option color-silver" data-color="Silver"></div>
+                        </div>
+                        <div class="car-price">$45,000</div>
+                    </div>
+                </div>
+                
+                <div class="car-card" data-model="suv">
+                    <div class="car-image" style="background-image: url('img/car\ placeholder.webp')"></div>
+                    <div class="car-info">
+                        <div class="car-model">AUTOBUBA SUV</div>
+                        <div class="car-description">Spacious SUV with advanced safety features and all-terrain capability</div>
+                        <div class="car-specs">
+                            <div class="car-spec">⚡ 320 HP</div>
+                            <div class="car-spec">🛢 26 MPG</div>
+                            <div class="car-spec">🔄 Automatic</div>
+                        </div>
+                        <div class="color-options">
+                            <div class="color-option color-red selected" data-color="Red"></div>
+                            <div class="color-option color-black" data-color="Black"></div>
+                            <div class="color-option color-white" data-color="White"></div>
+                            <div class="color-option color-blue" data-color="Blue"></div>
+                        </div>
+                        <div class="car-price">$55,000</div>
+                    </div>
+                </div>
+                
+                <div class="car-card hidden" data-model="coupe">
+                    <div class="car-image" style="background-image: url('img/car\ placeholder.webp')"></div>
+                    <div class="car-info">
+                        <div class="car-model">AUTOBUBA Coupe</div>
+                        <div class="car-description">Sporty coupe with dynamic performance and sleek design</div>
+                        <div class="car-specs">
+                            <div class="car-spec">⚡ 350 HP</div>
+                            <div class="car-spec">🛢 28 MPG</div>
+                            <div class="car-spec">🔄 Manual/Auto</div>
+                        </div>
+                        <div class="color-options">
+                            <div class="color-option color-red selected" data-color="Red"></div>
+                            <div class="color-option color-black" data-color="Black"></div>
+                            <div class="color-option color-silver" data-color="Silver"></div>
+                            <div class="color-option color-blue" data-color="Blue"></div>
+                        </div>
+                        <div class="car-price">$60,000</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="load-more-container">
+                <button id="loadmoreCars" class="load-more-button">Load More Models</button>
+            </div>
+
+            <div class="button-container">
+                <button class="continue-button" id="continueToTestDrive">Continue to Test Drive</button>
+            </div>
+        </div>
+
+        <!-- Page 2: Test Drive Scheduling -->
+        <div id="page2" class="page">
+            <div class="selected-car" id="selectedCarSummary"></div>
+            
+            <div class="form-container">
+                <h2 class="section-title">Test Drive Information</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" id="firstName" value="Adrien">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" id="lastName" value="Gervaix">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" value="adrien.gervaix@gmail.com">
+                </div>
+                
+                <div class="form-group">
+                    <label>Phone number</label>
+                    <input type="tel" id="phone" value="+33 6 12 34 56 78">
+                </div>
+                
+                <div class="form-group">
+                    <label>Upload Driver's License</label>
+                    <div class="file-upload" id="fileUpload">
+                        <div class="file-upload-icon">📄</div>
+                        <div class="file-upload-text">Drag and drop files here or click to browse</div>
+                        <div class="file-upload-subtext">Supported formats: PDF, JPG, PNG (Max 5MB)</div>
+                        <input type="file" class="file-upload-input" id="fileInput" multiple>
+                    </div>
+                    <div class="file-list" id="fileList"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Dealership Location</label>
+                    <select id="location">
+                        <option value="">Select a location</option>
+                        <option value="downtown" selected>Downtown Showroom</option>
+                        <option value="north">North City Dealership</option>
+                        <option value="west">West Side Motors</option>
+                        <option value="east">East End Auto Center</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Preferred Test Drive Date</label>
+                    <input type="date" id="dateInput" min="2023-10-01">
+                </div>
+
+                <div class="form-group">
+                    <label>Preferred Time Slot</label>
+                    <select id="timeSlot">
+                        <option value="">Select a time slot</option>
+                        <option value="morning" selected>Morning (9:00 - 12:00)</option>
+                        <option value="afternoon">Afternoon (12:00 - 17:00)</option>
+                        <option value="evening">Evening (17:00 - 20:00)</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter" checked>
+                    <label for="newsletter">Subscribe to our newsletter for special offers</label>
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <button class="back-button" id="backToCarSelection">Back</button>
+                <button class="confirm-button" id="confirmButton">Schedule Test Drive</button>
+            </div>
+        </div>
+
+        <!-- Success Message Modal -->
+        <div class="success-message" id="successMessage">
+            <div class="success-content">
+                <div class="success-icon">✓</div>
+                <div class="success-title">Test Drive Scheduled!</div>
+                <div class="success-text" id="successText">
+                    Your appointment has been successfully scheduled. We'll send a confirmation email to <strong id="confirmationEmail">adrien.gervaix@gmail.com</strong> with all the details.
+                    <br><br>
+                    Our team will contact you shortly to confirm your test drive.
+                </div>
+                <button class="success-button" id="successButton">Close</button>
+            </div>
+        </div>
+
+        
+    <script src="js/Booking.js"></script>
+</body>
+<script src="loading.js"></script>
+</html>

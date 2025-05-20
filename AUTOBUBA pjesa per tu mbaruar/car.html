@@ -1,0 +1,2433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="AUTOBUBA - Premium Car Marketplace">
+    <meta name="keywords" content="cars, marketplace, automotive, buy, rent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <title data-translate="Cars">Cars - AUTOBUBA</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="loading.css">
+    <link rel="stylesheet" href="css/cart.css">
+
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #dc3545;
+            --secondary-color: #2d3436;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --gray-color: #6c757d;
+            --success-color: #28a745;
+            --info-color: #17a2b8;
+            --white-color: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-color);
+            background-color: #f5f5f5;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn {
+            transition: var(--transition);
+            font-weight: 500;
+            border-radius: 4px;
+        }
+
+        .btn-danger {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
+        }
+
+        .btn-outline-danger {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-outline-danger:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
+        }
+
+        /* Header Styles */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--white-color);
+            box-shadow: var(--shadow);
+        }
+
+        .navbar {
+            padding: 15px 0;
+        }
+
+        .navbar-brand img {
+            max-height: 50px;
+        }
+
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            color: var(--dark-color) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link.underline::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1rem;
+            right: 1rem;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .header__nav__widget__btn a {
+            font-size: 1.25rem;
+            color: var(--dark-color);
+            margin-right: 1rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .header__nav__widget__btn a:hover {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: 0.65rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 50%;
+        }
+
+        .header .language-dropdown .dropdown-item {
+            padding: 0.5rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            margin-bottom: 0.25rem;
+        }
+
+        .header .language-dropdown .dropdown-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .header .language-dropdown .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .header .language-dropdown .dropdown-item.active {
+            background-color: rgba(220, 53, 69, 0.1);
+        }
+
+        /* Breadcrumb Styles */
+        .breadcrumb-option {
+            padding: 120px 0;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .breadcrumb-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .breadcrumb__text h2 {
+            font-size: 48px;
+            color: var(--white-color);
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .breadcrumb__links {
+            display: flex;
+            justify-content: center;
+        }
+
+        .breadcrumb__links a,
+        .breadcrumb__links span {
+            font-size: 16px;
+            color: var(--white-color);
+            margin-right: 26px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .breadcrumb__links a:after {
+            position: absolute;
+            right: -16px;
+            top: 0;
+            content: "|";
+            color: var(--white-color);
+        }
+
+
+        /* Price Range Slider */
+        .price-range-wrap {
+            padding: 0 5px;
+        }
+
+        .price-display {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .range-slider {
+            position: relative;
+            height: 5px;
+            background: #e9ecef;
+            border-radius: 3px;
+            margin: 1.5rem 0;
+        }
+
+        .range-slider .price-slider {
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            border-radius: 3px;
+            outline: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            z-index: 2;
+        }
+
+        .range-slider .price-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .range-slider .price-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        .range-slider .price-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+        }
+
+        /* Brand Filter */
+        .brand-filter .form-check {
+            padding: 0.5rem 0.75rem;
+            /* Reduced padding */
+            border-radius: 6px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            margin-bottom: 0.25rem;
+            /* Reduced margin */
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 0.75rem;
+            /* Space between elements */
+        }
+
+        .brand-filter .form-check:hover {
+            background: var(--light-color);
+            transform: translateX(5px);
+        }
+
+        .brand-filter .form-check-input {
+            margin-top: 0;
+            margin-right: 0;
+            /* Remove default margin */
+            flex-shrink: 0;
+            /* Prevent shrinking */
+        }
+
+        .brand-filter .form-check-input:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .brand-filter .form-check-label {
+            flex-grow: 1;
+            /* Take available space */
+            white-space: nowrap;
+            /* Prevent wrapping */
+        }
+
+        .brand-filter .badge {
+            position: static;
+            font-size: 0.7rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        /* Updated Filter Options CSS */
+        .car__filter__option {
+            background: var(--white-color);
+            border-radius: 12px;
+            padding: 1.5rem !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .car__filter__option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .car__filter__option__item h6 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .custom-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .custom-select select {
+            width: 100%;
+            height: 48px;
+            padding: 0.75rem 2.5rem 0.75rem 1.25rem;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            background-color: white;
+            font-size: 0.95rem;
+            color: var(--dark-color);
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%236c757d' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 24px;
+        }
+
+        .custom-select select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15);
+            outline: none;
+        }
+
+        .custom-select select:hover {
+            border-color: #ced4da;
+        }
+
+        .custom-select::after {
+            display: none;
+        }
+
+        /* Car Item Styles */
+        .car__item {
+            background: var(--white-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+            box-shadow: var(--shadow);
+        }
+
+        .car__item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .car__item__pic__slider {
+            position: relative;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .car__item__pic__slider img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .car__item:hover .car__item__pic__slider img {
+            transform: scale(1.05);
+        }
+
+        .label-date {
+            position: absolute;
+            left: 0;
+            top: 20px;
+            padding: 5px 15px;
+            background: var(--primary-color);
+            color: var(--white-color);
+            font-weight: 600;
+            border-radius: 0 4px 4px 0;
+            z-index: 1;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .car__item__text {
+            padding: 20px;
+        }
+
+        .car__item__text h5 {
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .car__item__text h5 a {
+            color: var(--secondary-color);
+            transition: color 0.3s ease;
+        }
+
+        .car__item__text h5 a:hover {
+            color: var(--primary-color);
+        }
+
+        .car-specs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .car-spec {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .car-spec:hover {
+            transform: translateY(-5px);
+        }
+
+        .car-spec i {
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+        }
+
+        .car-spec span {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .car-spec small {
+            color: var(--gray-color);
+            font-size: 0.75rem;
+        }
+
+        .car__item__price {
+            border-top: 1px solid #e1e1e1;
+            padding-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .car-option {
+            display: inline-block;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .car-option.sale {
+            background: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        .car-option.rent {
+            background: var(--secondary-color);
+            color: var(--white-color);
+        }
+
+        .car__item__price h6 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin: 5px 0 0;
+        }
+
+        .car__item__price h6 span {
+            font-size: 14px;
+            color: var(--gray-color);
+            font-weight: 400;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .btn-group .btn {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        /* Phone Button and Modal */
+
+
+        /* Cart Styles */
+        .cart-cars {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 350px;
+            max-width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 1001;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow-y: auto;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--gray-color);
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .selected-cars-container {
+            margin-top: 40px;
+        }
+
+        .selected-car-item {
+            display: flex;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .selected-car-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+
+        .selected-car-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .selected-car-info {
+            flex-grow: 1;
+        }
+
+        .brand-filter {
+            max-height: 150px;
+            overflow-y: auto;
+            /* Scroll vetëm vertikal */
+            overflow-x: hidden;
+            /* Fsheh scroll-in horizontal */
+            padding-left: 25px;
+            /* Siguron hapësirë për checkbox */
+            box-sizing: border-box;
+        }
+
+        .form-check {
+            margin-left: -20px;
+            /* Kompenson padding-in e div-it prind */
+            white-space: nowrap;
+            /* Parandalon që teksti të transferohet në rresht të ri */
+        }
+
+        .form-check-input {
+            margin-left: 0;
+            /* Siguron që checkbox-i të mos zhvendoset */
+        }
+
+        .brand-filter .form-check {
+            padding-left: 1em;
+            /* Siguron hapësirë të mjaftueshme për checkbox */
+        }
+
+        .brand-filter .form-check-input {
+            position: static;
+            /* Parandalon pozicionim të çuditshëm */
+            margin-left: 0;
+        }
+
+        .selected-car-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .selected-car-price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .selected-car-remove {
+            background: none;
+            border: none;
+            color: var(--gray-color);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .selected-car-remove:hover {
+            color: var(--primary-color);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .empty-cart i {
+            font-size: 50px;
+            color: #e1e1e1;
+            margin-bottom: 15px;
+        }
+
+        .empty-cart p {
+            color: var(--gray-color);
+        }
+
+        /* Owl Carousel Custom Styling */
+        .owl-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            pointer-events: none;
+        }
+
+        .owl-prev,
+        .owl-next {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.8) !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            pointer-events: auto;
+            transition: all 0.3s ease;
+        }
+
+        .owl-prev:hover,
+        .owl-next:hover {
+            background: var(--primary-color) !important;
+            color: white !important;
+            transform: scale(1.1);
+        }
+
+        .owl-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .owl-dot {
+            width: 8px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.5) !important;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .owl-dot.active {
+            background: var(--primary-color) !important;
+            transform: scale(1.3);
+        }
+
+        /* Language Dropdown Styles */
+        .header .language-dropdown {
+            margin-right: 15px;
+        }
+
+        .header .language-dropdown .btn-outline-danger {
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+            font-weight: 600;
+            border-width: 2px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, rgba(220, 53, 69, 0.05), rgba(220, 53, 69, 0));
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header .language-dropdown .btn-outline-danger:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 12px rgba(220, 53, 69, 0.2);
+            background: linear-gradient(to right, rgba(220, 53, 69, 0.1), rgba(220, 53, 69, 0.02));
+        }
+
+        .header .language-dropdown .dropdown-menu {
+            min-width: auto;
+            width: auto;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem;
+            animation: dropdownFadeIn 0.3s ease;
+            margin-top: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        @keyframes dropdownFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header .language-dropdown .dropdown-item {
+            padding: 0.5rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            margin-bottom: 0.25rem;
+        }
+
+        .header .language-dropdown .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* Header Button Styles */
+        .header-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-buttons .nav-link {
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 40px;
+            height: 40px;
+        }
+
+        .flex-item {
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 4px 4px 15px rgba(255, 0, 0, 0.5);
+
+
+
+        }
+
+        .item {
+
+            min-height: 155px !important;
+        }
+
+        .item2 {
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 4px 4px 15px rgba(255, 0, 0, 0.5);
+
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            .header .language-dropdown {
+                margin: 0.5rem 0;
+            }
+
+            .header-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .header .language-dropdown .btn-outline-danger {
+                padding: 0.4rem 0.6rem;
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1199px) {
+            .car__item__pic__slider {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .breadcrumb-option {
+                padding: 80px 0;
+            }
+
+            .breadcrumb__text h2 {
+                font-size: 36px;
+            }
+
+            .car-sidebar {
+                margin-bottom: 30px;
+            }
+
+            .btn-group {
+                flex-direction: row;
+            }
+
+            .btn-group .btn {
+                font-size: 0.75rem;
+                padding: 0.3rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .breadcrumb-option {
+                padding: 60px 0;
+            }
+
+            .breadcrumb__text h2 {
+                font-size: 30px;
+            }
+
+            .car__item__pic__slider {
+                height: 180px;
+            }
+
+            .car__item__text h5 {
+                font-size: 16px;
+            }
+
+            .car-spec i {
+                font-size: 1rem;
+            }
+
+            .car-spec span {
+                font-size: 0.8rem;
+            }
+
+            .car__item__price h6 {
+                font-size: 16px;
+            }
+
+            .car__filter__option {
+                padding: 1rem !important;
+            }
+
+            .car__filter__option__item h6 {
+                font-size: 0.9rem;
+            }
+
+            .custom-select select {
+                height: 42px;
+                padding: 0.5rem 2rem 0.5rem 1rem;
+                font-size: 0.9rem;
+                background-size: 20px;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .breadcrumb-option {
+                padding: 50px 0;
+            }
+
+            .breadcrumb__text h2 {
+                font-size: 24px;
+            }
+
+            .car__filter__option {
+                padding: 15px;
+                margin-left: -15px;
+                margin-right: -15px;
+                border-radius: 0;
+            }
+
+            .car__item__pic__slider {
+                height: 160px;
+            }
+
+            .car__item__text {
+                padding: 15px;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .car__filter__option__item {
+                margin-bottom: 1rem;
+            }
+
+            .car__filter__option__item:last-child {
+                margin-bottom: 0;
+            }
+
+            .dropdown {
+                margin-left: 10% !important;
+            }
+                @media (max-width: 767.98px) {
+        .sidebar-widget .flex-item, 
+        .sidebar-widget .item, 
+        .sidebar-widget .item2 {
+            width: 100% !important;
+            margin-right: 0 !important;
+            min-width: 100% !important;
+            margin-top: 25px !important;
+        }
+    }
+        }
+
+        .cart-cars.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Screen (Unchanged) -->
+    <div id="loading-screen">
+        <div class="loading-container">
+            <!-- Speedometer -->
+            <div class="speedometer-container">
+                <div class="speedometer">
+                    <div class="speedometer-scale">
+                        <div class="scale-mark mark-0"><span>0</span></div>
+                        <div class="scale-mark mark-20"><span>20</span></div>
+                        <div class="scale-mark mark-40"><span>40</span></div>
+                        <div class="scale-mark mark-60"><span>60</span></div>
+                        <div class="scale-mark mark-80"><span>80</span></div>
+                        <div class="scale-mark mark-100"><span>100</span></div>
+                    </div>
+                    <div class="needle-container">
+                        <div class="needle"></div>
+                        <div class="needle-center"></div>
+                    </div>
+                    <div class="speed-display">
+                        <span id="speed-value">0</span>
+                        <span class="speed-unit">km/h</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Text -->
+            <div class="loading-text">
+                <span>L</span>
+                <span>O</span>
+                <span>A</span>
+                <span>D</span>
+                <span>I</span>
+                <span>N</span>
+                <span>G</span>
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+
+            <!-- AUTOBUBA Text -->
+            <div class="autobuba-text">AUTOBUBA</div>
+        </div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <!-- Header Section Begin -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="./index.html">
+                    <img src="img/logo zoom.png" alt="AUTOBUBA" class="img-fluid" style="max-height: 60px;">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-black text-decoration-none mx-4 underline" href="car.html"
+                                data-translate="Cars">Cars</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black text-decoration-none mx-4" href="blog.html"
+                                data-translate="Blog">Blog</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link text-black text-decoration-none mx-4" href="about.html"
+                                data-translate="About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black text-decoration-none mx-4" href="contact.html"
+                                data-translate="Work">Work</a>
+                        </li>
+                    </ul>
+
+                    <!-- Language Dropdown -->
+                    <div class="language-dropdown mr-4">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-danger dropdown-toggle" type="button" id="languageDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="flag-icon flag-icon-gb"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                                <li><a class="dropdown-item language-option active" href="#" data-lang="en">
+                                        <span class="flag-icon flag-icon-gb"></span>
+                                    </a></li>
+                                <li><a class="dropdown-item language-option" href="#" data-lang="sq">
+                                        <span class="flag-icon flag-icon-al"></span>
+                                    </a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Cart/Login Buttons -->
+                    <div class="header-buttons d-flex align-items-center">
+                        <a href="Book a Test Drive.html" class="nav-link mr-2 d-flex align-items-center">
+                            <i class="fa-solid fa-car-side"></i>
+                        </a>
+                        <a id="cart" href="#" class="nav-link mr-2 position-relative d-flex align-items-center">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="badge bg-danger position-absolute" id="cart-count"></span>
+                        </a>
+                        <a href="report.html" class="nav-link mr-3 d-flex align-items-center" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Report a problem">
+                            <i class="fa-solid fa-flag"></i>
+                        </a>
+                        <button onclick="window.open('login.html')" class="btn btn-danger d-none d-sm-inline-block"
+                            data-translate="Log In">Log In</button>
+                        <button onclick="window.open('login.html')"
+                            class="btn btn-sm btn-danger d-inline-block d-sm-none mt-2 w-100"
+                            data-translate="Log In">Log In</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Header Section End -->
+    <!-- Header Section End -->
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option" style="background-image: url('img/breadcrumb-about_us.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2 data-translate="Car Listing">Car Listing</h2>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html"><i class="fa fa-home"></i> <span
+                                    data-translate="Home">Home</span></a>
+                            <span data-translate="Cars">Cars</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Car Section Begin -->
+    <section class="car spad">
+        <div class="container">
+
+
+
+            <div class="car-sidebar">
+                <h2 class="widget-title mb-2 text-center" style="margin-bottom: 70px !important" data-translate=" Search Inventory">Search Inventory</h2>
+                <!-- Search and Price Range in Flex Row -->
+                
+                <div class="sidebar-widget">
+    <div class="d-flex flex-wrap justify-content-between mb-3 align-items: stretch; row gx-3 gy-2">
+        <!-- Search Filter -->
+        <div class="flex-item item col-12 col-md-4" style="margin-right: 15px; width: 30% !important;">
+            <h4 class="widget-title mb-2" data-translate="Search Inventory">Search for any car</h4>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search makes, models..."
+                    data-translate-placeholder="Search makes, models...">
+                <button class="btn btn-danger">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Price Filter -->
+        <div class="flex-item col-12 col-md-4" style="min-width: 200px; width: 30%;">
+            <h4 class="widget-title mb-2" data-translate="Price Range">Price Range</h4>
+            <div class="price-range-wrap">
+                <div class="price-display">
+                    <span>$<span id="priceValue">10,000</span></span>
+                </div>
+                <div class="range-slider">
+                    <input type="range" class="price-slider form-range" min="0" max="1000000" step="5000"
+                        value="50000" id="priceSlider">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Brand Filter -->
+        <div class="sidebar-widget item2 col-12 col-md-4" style="width: 35%;">
+            <h4 class="widget-title" data-translate="Car Brand">Car Brand</h4>
+            <div class="brand-filter" style="max-height: 130px; overflow-y: auto;">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="brandAudi">
+                    <label class="form-check-label" for="brandAudi">Audi</label>
+                    <span class="badge bg-danger">23</span>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="brandBMW">
+                    <label class="form-check-label" for="brandBMW">BMW</label>
+                    <span class="badge bg-danger">15</span>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="brandMercedes">
+                    <label class="form-check-label" for="brandMercedes">Mercedes</label>
+                    <span class="badge bg-danger">9</span>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="brandPorsche">
+                    <label class="form-check-label" for="brandPorsche">Porsche</label>
+                    <span class="badge bg-danger">12</span>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="brandLamborghini">
+                    <label class="form-check-label" for="brandLamborghini">Lamborghini</label>
+                    <span class="badge bg-danger">7</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <!-- Brand Filter -->
+
+
+                <!-- Filter Button -->
+                <button class="btn btn-danger w-100 py-3 mt-3" data-translate="Apply Filters" style="margin-bottom: 50px !important;">
+                    Apply Filters
+                </button>
+            </div>
+
+
+            <!-- Car Sidebar -->
+
+            <!-- Car Listing Content -->
+            <div class="col-lg-9 col-md-8" style="width: 100% !important;">
+                <!-- Updated Filter Section -->
+                <div class="car__filter__option mb-4">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="car__filter__option__item">
+                                <h6 class="mb-2 font-weight-bold" data-translate="Show On Page">Show On Page</h6>
+                                <div class="custom-select">
+                                    <select id="showOnPage" class="form-select">
+                                        <option value="9" data-translate="9 Cars">9 Cars</option>
+                                        <option value="15" data-translate="15 Cars">15 Cars</option>
+                                        <option value="20" data-translate="20 Cars">20 Cars</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="car__filter__option__item">
+                                <h6 class="mb-2 font-weight-bold" data-translate="Sort By">Sort By</h6>
+                                <div class="custom-select">
+                                    <select id="sortBy" class="form-select">
+                                        <option value="price-high" data-translate="Price: Highest First">Price:
+                                            Highest First</option>
+                                        <option value="price-low" data-translate="Price: Lowest First">Price: Lowest
+                                            First</option>
+                                        <option value="newest" data-translate="Newest Models">Newest Models</option>
+                                        <option value="popular" data-translate="Most Popular">Most Popular</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Car Grid -->
+                <div class="row" id="carGrid">
+                    <!-- Car Item 1 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2016" data-price="218" data-type="rent">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-1.jpg" alt="Porsche Cayenne Turbo S">
+                                <img src="img/cars/car-8.jpg" alt="Porsche Cayenne Turbo S">
+                                <img src="img/cars/car-6.jpg" alt="Porsche Cayenne Turbo S">
+                                <img src="img/cars/car-3.jpg" alt="Porsche Cayenne Turbo S">
+                            </div>
+                            <div class="label-date">2016</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">Porsche Cayenne Turbo S</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>35,000</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Auto">Auto</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>700</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option rent" data-translate="For Rent">For Rent</span>
+                                        <h6 class="mt-2">$218<span data-translate="/mo">/mo</span></h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="1"
+                                            data-name="Porsche Cayenne Turbo S" data-price="218"
+                                            data-img="img/cars/car-1.jpg" data-type="rent">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Item 2 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2020" data-price="73900" data-type="sale">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-2.jpg" alt="Toyota Camry">
+                                <img src="img/cars/car-8.jpg" alt="Toyota Camry">
+                                <img src="img/cars/car-6.jpg" alt="Toyota Camry">
+                                <img src="img/cars/car-4.jpg" alt="Toyota Camry">
+                            </div>
+                            <div class="label-date">2020</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">Toyota Camry ASV50L</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>35,000</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Auto">Auto</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>700</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option sale" data-translate="For Sale">For Sale</span>
+                                        <h6 class="mt-2">$73,900</h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="2"
+                                            data-name="Toyota Camry ASV50L" data-price="73900"
+                                            data-img="img/cars/car-2.jpg" data-type="sale">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Item 3 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2017" data-price="299" data-type="rent">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-3.jpg" alt="BMW S1000RR">
+                                <img src="img/cars/car-8.jpg" alt="BMW S1000RR">
+                                <img src="img/cars/car-6.jpg" alt="BMW S1000RR">
+                                <img src="img/cars/car-5.jpg" alt="BMW S1000RR">
+                            </div>
+                            <div class="label-date">2017</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">BMW S1000RR 2019 M</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>35,000</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Auto">Auto</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>700</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option rent" data-translate="For Rent">For Rent</span>
+                                        <h6 class="mt-2">$299<span data-translate="/mo">/mo</span></h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="3"
+                                            data-name="BMW S1000RR 2019 M" data-price="299"
+                                            data-img="img/cars/car-3.jpg" data-type="rent">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Item 4 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2018" data-price="319" data-type="rent">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-5.jpg" alt="Audi Q8">
+                                <img src="img/cars/car-8.jpg" alt="Audi Q8">
+                                <img src="img/cars/car-7.jpg" alt="Audi Q8">
+                                <img src="img/cars/car-2.jpg" alt="Audi Q8">
+                            </div>
+                            <div class="label-date">2018</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">Audi Q8 2020</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>35,000</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Auto">Auto</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>700</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option rent" data-translate="For Rent">For Rent</span>
+                                        <h6 class="mt-2">$319<span data-translate="/mo">/mo</span></h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="4"
+                                            data-name="Audi Q8 2020" data-price="319" data-img="img/cars/car-5.jpg"
+                                            data-type="rent">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Item 5 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2016" data-price="730900" data-type="sale">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-6.jpg" alt="Mustang Shelby GT500">
+                                <img src="img/cars/car-8.jpg" alt="Mustang Shelby GT500">
+                                <img src="img/cars/car-3.jpg" alt="Mustang Shelby GT500">
+                                <img src="img/cars/car-1.jpg" alt="Mustang Shelby GT500">
+                            </div>
+                            <div class="label-date">2016</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">Mustang Shelby GT500</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>35,000</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Auto">Auto</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>700</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option sale" data-translate="For Sale">For Sale</span>
+                                        <h6 class="mt-2">$730,900</h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="5"
+                                            data-name="Mustang Shelby GT500" data-price="730900"
+                                            data-img="img/cars/car-6.jpg" data-type="sale">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Item 6 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2019" data-price="319" data-type="rent">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-4.jpg" alt="Lamborghini Huracan EVO">
+                                <img src="img/cars/car-8.jpg" alt="Lamborghini Huracan EVO">
+                                <img src="img/cars/car-2.jpg" alt="Lamborghini Huracan EVO">
+                                <img src="img/cars/car-1.jpg" alt="Lamborghini Huracan EVO">
+                            </div>
+                            <div class="label-date">2019</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">Lamborghini Huracan EVO</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>35,000</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Auto">Auto</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>700</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option rent" data-translate="For Rent">For Rent</span>
+                                        <h6 class="mt-2">$319<span data-translate="/mo">/mo</span></h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="6"
+                                            data-name="Lamborghini Huracan EVO" data-price="319"
+                                            data-img="img/cars/car-4.jpg" data-type="rent">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Item 7 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2020" data-price="120000" data-type="sale">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-7.jpg" alt="Lamborghini Huracan">
+                                <img src="img/cars/car-2.jpg" alt="Lamborghini Huracan">
+                                <img src="img/cars/car-4.jpg" alt="Lamborghini Huracan">
+                                <img src="img/cars/car-1.jpg" alt="Lamborghini Huracan">
+                            </div>
+                            <div class="label-date">2020</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">Lamborghini Huracan</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>35,000</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Auto">Auto</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>700</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option sale" data-translate="For Sale">For Sale</span>
+                                        <h6 class="mt-2">$120,000</h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="7"
+                                            data-name="Lamborghini Huracan" data-price="120000"
+                                            data-img="img/cars/car-7.jpg" data-type="sale">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Item 8 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2017" data-price="289" data-type="rent">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-8.jpg" alt="Porsche Cayenne">
+                                <img src="img/cars/car-3.jpg" alt="Porsche Cayenne">
+                                <img src="img/cars/car-5.jpg" alt="Porsche Cayenne">
+                                <img src="img/cars/car-2.jpg" alt="Porsche Cayenne">
+                            </div>
+                            <div class="label-date">2017</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">Porsche Cayenne Turbo S</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>35,000</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Auto">Auto</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>700</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option rent" data-translate="For Rent">For Rent</span>
+                                        <h6 class="mt-2">$289<span data-translate="/mo">/mo</span></h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="8"
+                                            data-name="Porsche Cayenne Turbo S" data-price="289"
+                                            data-img="img/cars/car-8.jpg" data-type="rent">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Car Item 9 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2021" data-price="850" data-type="rent">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-9.jpg" alt="Tesla Model S Plaid">
+                                <img src="img/cars/car-10.jpg" alt="Tesla Model S Plaid">
+                                <img src="img/cars/car-11.jpg" alt="Tesla Model S Plaid">
+                                <img src="img/cars/car-12.jpg" alt="Tesla Model S Plaid">
+                            </div>
+                            <div class="label-date">2021</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">Tesla Model S Plaid</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>12,000</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Auto">Auto</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>1,020</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option rent" data-translate="For Rent">For Rent</span>
+                                        <h6 class="mt-2">$850<span data-translate="/mo">/mo</span></h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="9"
+                                            data-name="Tesla Model S Plaid" data-price="850"
+                                            data-img="img/cars/car-9.jpg" data-type="rent">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Item 10 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2019" data-price="149999" data-type="sale">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-10.jpg" alt="Ford Mustang GT">
+                                <img src="img/cars/car-11.jpg" alt="Ford Mustang GT">
+                                <img src="img/cars/car-12.jpg" alt="Ford Mustang GT">
+                                <img src="img/cars/car-9.jpg" alt="Ford Mustang GT">
+                            </div>
+                            <div class="label-date">2019</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">Ford Mustang GT 5.0</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>25,000</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Manual">Manual</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>450</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option sale" data-translate="For Sale">For Sale</span>
+                                        <h6 class="mt-2">$149,999</h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="10"
+                                            data-name="Ford Mustang GT 5.0" data-price="149999"
+                                            data-img="img/cars/car-10.jpg" data-type="sale">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Item 11 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2022" data-price="450" data-type="rent">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-11.jpg" alt="Mercedes-AMG GT">
+                                <img src="img/cars/car-12.jpg" alt="Mercedes-AMG GT">
+                                <img src="img/cars/car-9.jpg" alt="Mercedes-AMG GT">
+                                <img src="img/cars/car-10.jpg" alt="Mercedes-AMG GT">
+                            </div>
+                            <div class="label-date">2022</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">Mercedes-AMG GT R</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>8,500</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Auto">Auto</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>577</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option rent" data-translate="For Rent">For Rent</span>
+                                        <h6 class="mt-2">$450<span data-translate="/mo">/mo</span></h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="11"
+                                            data-name="Mercedes-AMG GT R" data-price="450"
+                                            data-img="img/cars/car-11.jpg" data-type="rent">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Item 12 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2023" data-price="299999" data-type="sale">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-12.jpg" alt="Ferrari 488 GTB">
+                                <img src="img/cars/car-9.jpg" alt="Ferrari 488 GTB">
+                                <img src="img/cars/car-10.jpg" alt="Ferrari 488 GTB">
+                                <img src="img/cars/car-11.jpg" alt="Ferrari 488 GTB">
+                            </div>
+                            <div class="label-date">2023</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">Ferrari 488 GTB</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>3,200</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Auto">Auto</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>661</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option sale" data-translate="For Sale">For Sale</span>
+                                        <h6 class="mt-2">$299,999</h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="12"
+                                            data-name="Ferrari 488 GTB" data-price="299999"
+                                            data-img="img/cars/car-12.jpg" data-type="sale">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Item 13 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2020" data-price="379" data-type="rent">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-13.jpg" alt="Audi RS7 Sportback">
+                                <img src="img/cars/car-14.jpg" alt="Audi RS7 Sportback">
+                                <img src="img/cars/car-9.jpg" alt="Audi RS7 Sportback">
+                                <img src="img/cars/car-10.jpg" alt="Audi RS7 Sportback">
+                            </div>
+                            <div class="label-date">2020</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">Audi RS7 Sportback</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>18,000</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Auto">Auto</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>591</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option rent" data-translate="For Rent">For Rent</span>
+                                        <h6 class="mt-2">$379<span data-translate="/mo">/mo</span></h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="13"
+                                            data-name="Audi RS7 Sportback" data-price="379"
+                                            data-img="img/cars/car-13.jpg" data-type="rent">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Car Item 14 -->
+                    <div class="col-lg-6 col-md-12 mb-4 car-item" data-year="2021" data-price="259999" data-type="sale">
+                        <div class="car__item h-100">
+                            <div class="car__item__pic__slider owl-carousel">
+                                <img src="img/cars/car-14.jpg" alt="Chevrolet Corvette Stingray">
+                                <img src="img/cars/car-13.jpg" alt="Chevrolet Corvette Stingray">
+                                <img src="img/cars/car-12.jpg" alt="Chevrolet Corvette Stingray">
+                                <img src="img/cars/car-11.jpg" alt="Chevrolet Corvette Stingray">
+                            </div>
+                            <div class="label-date">2021</div>
+                            <div class="car__item__text">
+                                <div class="car__item__text__inner">
+                                    <h5><a href="car-details.html">Chevrolet Corvette Stingray</a></h5>
+                                    <div class="car-specs">
+                                        <div class="car-spec">
+                                            <i class="fa fa-road"></i>
+                                            <span>6,500</span>
+                                            <small data-translate="miles">miles</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-cog"></i>
+                                            <span data-translate="Auto">Auto</span>
+                                            <small data-translate="trans">trans</small>
+                                        </div>
+                                        <div class="car-spec">
+                                            <i class="fa fa-tachometer-alt"></i>
+                                            <span>495</span>
+                                            <small data-translate="hp">hp</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__item__price">
+                                    <div>
+                                        <span class="car-option sale" data-translate="For Sale">For Sale</span>
+                                        <h6 class="mt-2">$259,999</h6>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a href="#" class="btn btn-outline-danger add-to-cart-btn" data-id="14"
+                                            data-name="Chevrolet Corvette Stingray" data-price="259999"
+                                            data-img="img/cars/car-14.jpg" data-type="sale">
+                                            <i class="fa fa-cart-plus"></i> <span data-translate="Add to Cart">Add
+                                                to Cart</span>
+                                        </a>
+                                        <a href="Book a Test Drive.html" class="btn btn-danger">
+                                            <i class="fa fa-car"></i> <span data-translate="Test Drive">Test
+                                                Drive</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- Car Section End -->
+
+    <!-- Footer Section Begin (Unchanged) -->
+    <footer class="footer" style="background-image: url('img/footer-bg.jpg');">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <img src="img/logo zoom.png" alt="Autobuba Logo" class="img-fluid">
+                        </div>
+                        <div class="footer__contact-box">
+                            <p><i class="fa fa-envelope"></i> autobuba2025@gmail.com</p>
+                            <p><i class="fa fa-phone"></i> +355 69 311 3209</p>
+                        </div>
+                        <div class="footer__social d-flex align-items-center gap-2">
+                            <a href="https://www.tiktok.com/@autobuba1" class="social-btn tiktok" target="_blank">
+                                <i class="bi bi-tiktok"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/auto_buba?igsh=MWg1b213Y3oxeG1ydg=="
+                                class="social-btn instagram" target="_blank">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="footer__widget">
+                        <h5 data-translate="Navigation">Navigation</h5>
+                        <ul class="list-unstyled footer-links">
+                            <li><a href="contact.html"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Contact Us">Contact Us</span></a></li>
+                            <li><a href="car.html"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Cars">Cars</span></a></li>
+                            <li><a href="blog.html"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Blog">Blog</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="footer__widget">
+                        <h5 data-translate="Cars">Cars</h5>
+                        <ul class="list-unstyled footer-links">
+                            <li><a href="#"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Hatchback">Hatchback</span></a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Sedan">Sedan</span></a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i> <span data-translate="SUV">SUV</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer__brand">
+                        <h5 data-translate="Learn">Learn</h5>
+                        <ul class="list-unstyled footer-links">
+                            <li><a href="about.html"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="About Us">About Us</span></a></li>
+                            <li><a href="#chooseUs"><i class="fa fa-angle-right"></i> <span data-translate="Why Us?">Why
+                                        Us?</span></a></li>
+                            <li><a href="#trustedName"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Who are we?">Who are we?</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p class="copyright">© <span
+                                data-translate="Copyright 2025 AUTOBUBA. All Rights Reserved.">Copyright 2025 QUOLYTECH.
+                                All Rights Reserved.</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Simple Phone Button -->
+    <div class="phone-container">
+        <div class="phone-logo" id="phoneLogo">
+            <div class="phone-icon">
+                <i class="fa-solid fa-phone"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <h2 class="modal-title">Contact Information</h2>
+            <p>Please call us at:</p>
+            <div class="modal-number-container">
+                <a href="tel:+69 69 690 6969" class="modal-number" id="phoneNumber">+355 69 311 3209</a>
+                <button class="modal-copy-button" id="modalCopyButton">
+                    <svg class="modal-copy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+                    </svg>
+                </button>
+                <span class="copy-tooltip" id="modalTooltip">Copied to clipboard!</span>
+            </div>
+            <button class="close-button" id="closeModal">Close</button>
+        </div>
+    </div>>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartCars">
+        <div class="cart-header">
+            <h3 data-translate="Your Cart">Your Cart</h3>
+            <button id="closeCartdisplay" class="close-cart">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-body" id="selectedCars">
+            <!-- Cart items will be inserted here dynamically -->
+        </div>
+    </div>
+
+    <!-- Js Plugins -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="loading.js"></script>
+    <script src="car.js"></script>
+
+    <!-- Custom Script for Price Slider and Select Elements -->
+   <script>
+    // Translation dictionary
+    const translations = {
+        en: {
+            "Cars": "Cars",
+            "Blog": "Blog",
+            "Car Details": "Car Details",
+            "About": "About",
+            "Work": "Work",
+            "Test Drive": "Test Drive",
+            "Cart": "Cart",
+            "Report": "Report",
+            "Log In": "Log In",
+            "Car Listing": "Car Listing",
+            "Home": "Home",
+            "Search Inventory": "Search Inventory",
+            "Search makes, models...": "Search makes, models...",
+            "Price Range": "Price Range",
+            "Car Brand": "Car Brand",
+            "Apply Filters": "Apply Filters",
+            "Show On Page": "Show On Page",
+            "9 Cars": "9 Cars",
+            "15 Cars": "15 Cars",
+            "20 Cars": "20 Cars",
+            "Sort By": "Sort By",
+            "Price: Highest First": "Price: Highest First",
+            "Price: Lowest First": "Price: Lowest First",
+            "Newest Models": "Newest Models",
+            "Most Popular": "Most Popular",
+            "miles": "miles",
+            "Auto": "Auto",
+            "trans": "trans",
+            "hp": "hp",
+            "For Rent": "For Rent",
+            "/mo": "/mo",
+            "Add to Cart": "Add to Cart",
+            "For Sale": "For Sale",
+            "Manual": "Manual",
+            "Navigation": "Navigation",
+            "Contact Us": "Contact Us",
+            "Hatchback": "Hatchback",
+            "Sedan": "Sedan",
+            "SUV": "SUV",
+            "Learn": "Learn",
+            "Why Us?": "Why Us?",
+            "Who are we?": "Who are we?",
+            "Copyright 2025 AUTOBUBA. All Rights Reserved.": "Copyright 2025 AUTOBUBA. All Rights Reserved.",
+            "Contact Information": "Contact Information",
+            "Please call us at:": "Please call us at:",
+            "Copied to clipboard!": "Copied to clipboard!",
+            "Close": "Close",
+            "Your cart is empty": "Your cart is empty",
+            "Add some cars to get started!": "Add some cars to get started!"
+        },
+        sq: {
+            "Cars": "Makinat",
+            "Blog": "Blog",
+            "Car Details": "Detajet e Makinës",
+            "About": "Rreth Nesh",
+            "Work": "Puna",
+            "Test Drive": "Test Drive",
+            "Cart": "Shporta",
+            "Report": "Raportoni",
+            "Log In": "Hyr",
+            "Car Listing": "Lista e Makinave",
+            "Home": "Kryefaqja",
+            "Search Inventory": "Kërko Inventar",
+            "Search makes, models...": "Kërko marka, modele...",
+            "Price Range": "Gama e Çmimeve",
+            "Car Brand": "Marka e Makinës",
+            "Apply Filters": "Apliko Filtrot",
+            "Show On Page": "Shfaq në Faqe",
+            "9 Cars": "9 Makina",
+            "15 Cars": "15 Makina",
+            "20 Cars": "20 Makina",
+            "Sort By": "Rendit Sipas",
+            "Price: Highest First": "Çmimi: Më i Lartë Së Pari",
+            "Price: Lowest First": "Çmimi: Më i Ulet Së Pari",
+            "Newest Models": "Modelet Më të Reja",
+            "Most Popular": "Më të Popullarizuara",
+            "miles": "milje",
+            "Auto": "Automatik",
+            "trans": "transmision",
+            "hp": "kuaj fuqi",
+            "For Rent": "Për Qira",
+            "/mo": "/muaj",
+            "Add to Cart": "Shto në Shportë",
+            "For Sale": "Për Shitje",
+            "Manual": "Manual",
+            "Navigation": "Navigimi",
+            "Contact Us": "Na Kontaktoni",
+            "Hatchback": "Hatchback",
+            "Sedan": "Sedan",
+            "SUV": "SUV",
+            "Learn": "Mësoni",
+            "Why Us?": "Pse Ne?",
+            "Who are we?": "Kush jemi ne?",
+            "Copyright 2025 AUTOBUBA. All Rights Reserved.": "Të gjitha të drejtat e rezervuara © AUTOBUBA 2025",
+            "Contact Information": "Informacioni i Kontaktit",
+            "Please call us at:": "Ju lutemi na telefononi në:",
+            "Copied to clipboard!": "Kopjuar në clipboard!",
+            "Close": "Mbyll",
+            "Your cart is empty": "Shporta juaj është bosh",
+            "Add some cars to get started!": "Shtoni disa makina për të filluar!"
+        }
+    };
+
+    // Initialize when document is ready
+    $(document).ready(function() {
+        // Initialize price slider
+        const priceSlider = document.getElementById("priceSlider");
+        const priceValue = document.getElementById("priceValue");
+        
+        if (priceSlider && priceValue) {
+            // Format initial value
+            priceValue.textContent = new Intl.NumberFormat().format(priceSlider.value);
+            
+            // Update on input
+            priceSlider.addEventListener("input", function() {
+                priceValue.textContent = new Intl.NumberFormat().format(this.value);
+                updateSliderBackground(this);
+            });
+            
+            // Set initial background
+            updateSliderBackground(priceSlider);
+        }
+
+        // Apply Filters button functionality
+        $('.btn-danger').on('click', function() {
+            if ($(this).text().trim() === translations.en['Apply Filters'] || $(this).text().trim() === translations.sq['Apply Filters']) {
+                applyFilters();
+            }
+        });
+
+        // Initialize show on page and sort by functionality
+        $('#showOnPage').on('change', showOnPageHandler);
+        $('#sortBy').on('change', sortByHandler);
+        
+        // Initialize with default values
+        showOnPageHandler();
+    });
+
+    // Format number with commas
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    // Update slider background to show filled portion
+    function updateSliderBackground(slider) {
+        const value = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+        slider.style.background = `linear-gradient(to right, #dc3545 0%, #dc3545 ${value}%, #e9ecef ${value}%, #e9ecef 100%)`;
+    }
+
+    // Show on Page functionality
+    function showOnPageHandler() {
+        const carsPerPage = parseInt($('#showOnPage').val());
+        const visibleCarItems = $('.car-item:visible');
+        
+        // Show all visible cars first
+        visibleCarItems.show();
+        
+        // Hide cars beyond the selected number
+        if (visibleCarItems.length > carsPerPage) {
+            visibleCarItems.slice(carsPerPage).hide();
+        }
+    }
+
+    // Sort By functionality
+    function sortByHandler() {
+        const sortOption = $('#sortBy').val();
+        const carGrid = $('#carGrid');
+        const carItems = $('.car-item:visible').get();
+        
+        // Sort cars based on selected option
+        carItems.sort(function(a, b) {
+            const priceA = parseInt($(a).data('price'));
+            const priceB = parseInt($(b).data('price'));
+            const yearA = parseInt($(a).data('year'));
+            const yearB = parseInt($(b).data('year'));
+            
+            switch (sortOption) {
+                case 'price-high':
+                    return priceB - priceA;
+                case 'price-low':
+                    return priceA - priceB;
+                case 'newest':
+                    return yearB - yearA;
+                case 'popular':
+                    // For demo purposes, we'll just use a random sort for "popular"
+                    return 0.5 - Math.random();
+                default:
+                    return 0;
+            }
+        });
+        
+        // Append sorted items to the grid
+        $.each(carItems, function(index, item) {
+            carGrid.append(item);
+        });
+        
+        // Re-apply the "Show on Page" filter
+        showOnPageHandler();
+    }
+
+    // Apply all filters
+    function applyFilters() {
+        const maxPrice = parseInt($('#priceSlider').val());
+        const selectedBrands = [];
+        
+        // Get selected brands
+        $('.brand-filter input[type="checkbox"]:checked').each(function() {
+            selectedBrands.push($(this).next('label').text().trim());
+        });
+        
+        // Filter cars
+        $('.car-item').each(function() {
+            const carPrice = parseInt($(this).data('price'));
+            const carName = $(this).find('h5 a').text();
+            let brandMatch = false;
+            
+            // Check if car matches any selected brand
+            if (selectedBrands.length === 0) {
+                brandMatch = true;
+            } else {
+                for (const brand of selectedBrands) {
+                    if (carName.toLowerCase().includes(brand.toLowerCase())) {
+                        brandMatch = true;
+                        break;
+                    }
+                }
+            }
+            
+            // Check price and brand match
+            if (carPrice <= maxPrice && brandMatch) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+        
+        // Apply sorting and pagination
+        sortByHandler();
+    }
+
+    // Phone button functionality
+    const phoneLogo = document.getElementById('phoneLogo');
+    const contactModal = document.getElementById('contactModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalCopyButton = document.getElementById('modalCopyButton');
+    const modalTooltip = document.getElementById('modalTooltip');
+
+    if (phoneLogo && contactModal && closeModal) {
+        // Open modal
+        phoneLogo.addEventListener('click', function() {
+            contactModal.style.display = 'flex';
+        });
+        
+        // Close modal
+        closeModal.addEventListener('click', function() {
+            contactModal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === contactModal) {
+                contactModal.style.display = 'none';
+            }
+        });
+        
+        // Copy phone number
+        if (modalCopyButton && modalTooltip) {
+            modalCopyButton.addEventListener('click', function() {
+                const phoneNumber = document.getElementById('phoneNumber').textContent;
+                navigator.clipboard.writeText(phoneNumber);
+                
+                modalTooltip.style.opacity = '1';
+                setTimeout(function() {
+                    modalTooltip.style.opacity = '0';
+                }, 2000);
+            });
+        }
+    }
+</script>
+    <script>
+        const priceSlider = document.getElementById("priceSlider");
+    const priceValue = document.getElementById("priceValue");
+
+    priceSlider.addEventListener("input", function() {
+        // Formatimi i vlerës me presje (p.sh., 50,000)
+        const formattedValue = new Intl.NumberFormat().format(this.value);
+        priceValue.textContent = formattedValue;
+    });
+    </script>
+
+
+    <script src="js/cart.js"></script>
+    <script src="js/car-fileter.js"></script>
+    <script src="js/index-language-selector.js"></script>
+
+
+</body>
+
+</html>

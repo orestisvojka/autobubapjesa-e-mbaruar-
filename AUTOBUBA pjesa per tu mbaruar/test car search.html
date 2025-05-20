@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        /*---------------------
+  Hero
+-----------------------*/
+
+.hero {
+	padding: 140px 0;
+}
+
+.hero__text {
+	padding-top: 110px;
+}
+
+.hero__text .primary-btn {
+	margin-right: 16px;
+}
+
+.hero__text .primary-btn img {
+	position: relative;
+	top: -2px;
+}
+
+.hero__text .primary-btn.more-btn {
+	background: transparent;
+	border: 1px solid #ffffff;
+}
+
+.hero__text__title {
+	margin-bottom: 28px;
+}
+
+.hero__text__title span {
+	font-size: 20px;
+	color: #ffffff;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.hero__text__title h2 {
+	font-size: 60px;
+	color: #ffffff;
+	font-weight: 700;
+	margin-top: 10px;
+}
+
+.hero__text__price {
+	position: relative;
+	padding-left: 140px;
+	margin-bottom: 55px;
+}
+
+.hero__text__price .car-model {
+	font-size: 13px;
+	color: #323232;
+	font-weight: 700;
+	display: inline-block;
+	padding: 6px 14px;
+	background: #ffffff;
+	border-radius: 2px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+.hero__text__price h2 {
+	font-size: 50px;
+	color: #ffffff;
+	font-weight: 700;
+	line-height: 45px;
+}
+
+.hero__text__price h2 span {
+	font-size: 40px;
+}
+
+.hero__tab .nav-tabs {
+	border-bottom: none;
+}
+
+.hero__tab .nav-tabs .nav-item {
+	margin-bottom: 5px;
+	margin-right: 5px;
+}
+
+.hero__tab .nav-tabs .nav-item .nav-link {
+	position: relative;
+	font-size: 15px;
+	font-weight: 700;
+	color: #323232;
+	display: inline-block;
+	padding: 7px 20px;
+	border: none;
+	border-radius: 2px;
+	background: #ffffff;
+}
+
+.hero__tab .nav-tabs .nav-item .nav-link:after {
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 10px;
+	left: 0;
+	bottom: -7px;
+	opacity: 0;
+	background: #ffffff;
+	-webkit-transition: 0.3s;
+	-o-transition: 0.3s;
+	transition: 0.3s;
+}
+
+.hero__tab .nav-tabs .nav-item .nav-link.active:after {
+	opacity: 1;
+	bottom: -7px;
+}
+
+.hero__tab__form {
+	background: #ffffff;
+	padding: 42px 40px 50px;
+	border-radius: 2px;
+}
+
+.hero__tab__form h2 {
+	color: #323232;
+	font-weight: 700;
+	margin-bottom: 22px;
+}
+
+.hero__tab__form form .select-list {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-right: -20px;
+}
+
+.hero__tab__form form .select-list .select-list-item {
+	max-width: calc(50% - 20px);
+	float: left;
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+.hero__tab__form form .select-list .select-list-item p {
+	color: #323232;
+	margin-bottom: 5px;
+}
+
+.hero__tab__form form .select-list .select-list-item .nice-select {
+	width: 100%;
+	height: 40px;
+	border: 1px solid #ebebeb;
+	border-radius: 2px;
+}
+
+.hero__tab__form form .select-list .select-list-item .nice-select .list {
+	width: 100%;
+	border-radius: 0;
+	margin-top: 0;
+}
+
+.hero__tab__form form .select-list .select-list-item .nice-select.open span {
+	display: block !important;
+}
+
+.hero__tab__form form .select-list .select-list-item .nice-select:after {
+	display: none;
+}
+
+.hero__tab__form form .car-price {
+	margin-bottom: 45px;
+}
+
+.hero__tab__form form .car-price p {
+	color: #323232;
+	margin-bottom: 5px;
+	margin-bottom: 12px;
+}
+
+.hero__tab__form form .car-price .price-range-wrap {
+	position: relative;
+}
+
+.hero__tab__form form .car-price .price-range-wrap .ui-widget-content {
+	height: 5px;
+	background: rgba(45, 45, 45, 0.1);
+	border: none;
+	border-radius: 1px;
+}
+
+.hero__tab__form form .car-price .price-range-wrap .ui-slider-horizontal .ui-slider-handle {
+	top: -5px;
+	margin-left: -4px;
+}
+
+.hero__tab__form form .car-price .price-range-wrap .ui-slider .ui-slider-handle {
+	width: 14px;
+	height: 14px;
+	background: #ffffff;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.hero__tab__form form .car-price .price-range-wrap .ui-state-default,
+.hero__tab__form form .car-price .price-range-wrap .ui-widget-content .ui-state-default,
+.hero__tab__form form .car-price .price-range-wrap .ui-widget-header .ui-state-default,
+.hero__tab__form form .car-price .price-range-wrap .ui-button,
+.hero__tab__form form .car-price .price-range-wrap html .ui-button.ui-state-disabled:hover,
+.hero__tab__form form .car-price .price-range-wrap html .ui-button.ui-state-disabled:active {
+	border: 1.5px solid #db2d2e;
+}
+
+.hero__tab__form form .car-price .price-range-wrap .ui-slider .ui-slider-range {
+	background: #db2d2e;
+}
+
+.hero__tab__form form .car-price .price-input {
+	position: absolute;
+	left: 89px;
+	top: -36px;
+}
+
+.hero__tab__form form .car-price .price-input input {
+	font-size: 15px;
+	color: #323232;
+	font-weight: 700;
+	border: none;
+	width: 180px;
+}
+.car-result {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.car-result p {
+    margin: 5px 0;
+}
+
+.car-result hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+    </style>
+</head>
+<body>
+    <!-- Car Rental Form -->
+    <div class="tab-pane active" id="tabs-1" role="tabpanel">
+        <div class="hero__tab__form">
+            <h2>Rent Your Dream Car</h2>
+            <form id="rentalForm">
+                <div class="select-list">
+                    <div class="select-list-item">
+                        <select name="year" id="rentYear">
+                            <option value="">Select Year</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                        </select>
+                    </div>
+                    <div class="select-list-item">
+                        <select name="brand" id="rentBrand">
+                            <option value="">Select Brand</option>
+                            <option value="Acura">Acura</option>
+                            <option value="Audi">Audi</option>
+                            <option value="Bentley">Bentley</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Bugatti">Bugatti</option>
+                        </select>
+                    </div>
+                    <div class="select-list-item">
+                        <select name="model" id="rentModel">
+                            <option value="">Select Model</option>
+                            <option value="Q3">Q3</option>
+                            <option value="A4">A4</option>
+                            <option value="AVENTADOR">AVENTADOR</option>
+                            <option value="X5">X5</option>
+                        </select>
+                    </div>
+                    <div class="select-list-item">
+                        <select name="mileage" id="rentMileage">
+                            <option value="">Select Mileage</option>
+                            <option value="27">27</option>
+                            <option value="25">25</option>
+                            <option value="15">15</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="car-price">
+                    <p>Price Range:</p>
+                    <div class="price-range-wrap">
+                        <div class="price-range"></div>
+                        <div class="range-slider">
+                            <div class="price-input">
+                                <input type="text" id="amount" name="price" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="site-btn">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Buy Car Form -->
+    <div class="tab-pane" id="tabs-2" role="tabpanel">
+        <div class="hero__tab__form">
+            <h2>Buy Your Dream Car</h2>
+            <form id="buyForm">
+                <div class="select-list">
+                    <div class="select-list-item">
+                        <select name="year" id="buyYear">
+                            <option value="">Select Year</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                            <option value="2018">2018</option>
+                            <option value="2017">2017</option>
+                            <option value="2016">2016</option>
+                            <option value="2015">2015</option>
+                        </select>
+                    </div>
+                    <div class="select-list-item">
+                        <select name="brand" id="buyBrand">
+                            <option value="">Select Brand</option>
+                            <option value="Acura">Acura</option>
+                            <option value="Audi">Audi</option>
+                            <option value="Bentley">Bentley</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Bugatti">Bugatti</option>
+                        </select>
+                    </div>
+                    <div class="select-list-item">
+                        <select name="model" id="buyModel">
+                            <option value="">Select Model</option>
+                            <option value="Q3">Q3</option>
+                            <option value="A4">A4</option>
+                            <option value="AVENTADOR">AVENTADOR</option>
+                            <option value="X5">X5</option>
+                        </select>
+                    </div>
+                    <div class="select-list-item">
+                        <select name="mileage" id="buyMileage">
+                            <option value="">Select Mileage</option>
+                            <option value="27">27</option>
+                            <option value="25">25</option>
+                            <option value="15">15</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Price Range Slider for Buy Car -->
+                <div class="car-price">
+                    <p>Price Range:</p>
+                    <div class="price-range-wrap">
+                        <div class="buy-price-range"></div>
+                        <div class="range-slider">
+                            <div class="price-input">
+                                <input type="text" id="buyAmount" name="price" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="site-btn">Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+</body>
+<script>
+    // Define the cars array with more options
+const cars = [
+    { id: 1, year: 2020, brand: "Audi", model: "Q3", mileage: 27, price: 50000, status: "Available" },
+    { id: 2, year: 2019, brand: "BMW", model: "X5", mileage: 25, price: 60000, status: "Available" },
+    { id: 3, year: 2021, brand: "Tesla", model: "Model 3", mileage: 15, price: 55000, status: "Sold" },
+    { id: 4, year: 2018, brand: "Toyota", model: "Camry", mileage: 30, price: 30000, status: "Available" },
+    { id: 5, year: 2022, brand: "Audi", model: "A4", mileage: 22, price: 45000, status: "Available" },
+    { id: 6, year: 2020, brand: "BMW", model: "3 Series", mileage: 20, price: 48000, status: "Available" },
+    { id: 7, year: 2021, brand: "Toyota", model: "RAV4", mileage: 28, price: 35000, status: "Available" },
+    { id: 8, year: 2019, brand: "Tesla", model: "Model S", mileage: 18, price: 80000, status: "Sold" },
+    { id: 9, year: 2020, brand: "Audi", model: "Q5", mileage: 24, price: 55000, status: "Available" },
+    { id: 10, year: 2021, brand: "BMW", model: "5 Series", mileage: 19, price: 65000, status: "Available" },
+    { id: 11, year: 2018, brand: "Toyota", model: "Corolla", mileage: 32, price: 25000, status: "Available" },
+    { id: 12, year: 2022, brand: "Tesla", model: "Model Y", mileage: 20, price: 60000, status: "Available" },
+];
+
+// Search Functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('searchModal');
+    const closeModalBtn = document.querySelector('.close-modal');
+
+    // Function to open the modal
+    function openModal() {
+        modal.style.display = 'block';
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // Close modal when clicking the close button
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // Close modal when clicking outside the modal
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Close modal when pressing the Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'block') {
+            closeModal();
+        }
+    });
+
+    function filterCars(year, brand, model, mileage, priceRange) {
+        console.log("Filtering Cars with Criteria:", { year, brand, model, mileage, priceRange });
+    
+        return cars.filter(car => {
+            // Convert price range to min and max values
+            let minPrice = 0;
+            let maxPrice = Infinity;
+    
+            if (priceRange && priceRange.includes(' - ')) {
+                [minPrice, maxPrice] = priceRange.replace('$', '').split(' - ').map(Number);
+            }
+    
+            // Debug each condition
+            const matchesYear = !year || car.year === parseInt(year);
+            const matchesBrand = !brand || car.brand.toLowerCase() === brand.toLowerCase();
+            const matchesModel = !model || car.model.toLowerCase() === model.toLowerCase();
+            const matchesMileage = !mileage || car.mileage === parseInt(mileage);
+            const matchesPrice = car.price >= minPrice && car.price <= maxPrice;
+    
+            console.log("Car:", car, {
+                matchesYear,
+                matchesBrand,
+                matchesModel,
+                matchesMileage,
+                matchesPrice,
+            });
+    
+            return matchesYear && matchesBrand && matchesModel && matchesMileage && matchesPrice;
+        });
+    }
+
+    // Function to display search results in the modal
+    function displayResults(filteredCars) {
+        const searchResults = document.getElementById('searchResults');
+        searchResults.innerHTML = '';
+
+        if (filteredCars.length === 0) {
+            searchResults.innerHTML = `<p>No matching cars found. Please adjust your search criteria.</p>`;
+        } else {
+            const resultsHTML = filteredCars.map(car => `
+                <div class="car-result">
+                    <p><strong>Brand:</strong> ${car.brand}</p>
+                    <p><strong>Model:</strong> ${car.model}</p>
+                    <p><strong>Year:</strong> ${car.year}</p>
+                    <p><strong>Mileage:</strong> ${car.mileage} MPG</p>
+                    <p><strong>Price:</strong> $${car.price.toLocaleString()}</p>
+                    <p><strong>Status:</strong> ${car.status}</p>
+                    <hr>
+                </div>
+            `).join('');
+
+            searchResults.innerHTML = resultsHTML;
+        }
+    }
+
+    // Handle form submission for Buy Car
+    document.getElementById('buyForm').addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent the form from submitting
+
+        // Get form data
+        const year = document.getElementById('buyYear').value;
+        const brand = document.getElementById('buyBrand').value;
+        const model = document.getElementById('buyModel').value;
+        const mileage = document.getElementById('buyMileage').value;
+        const priceRange = document.getElementById('buyAmount').value;
+
+        // Filter cars based on search criteria
+        const filteredCars = filterCars(year, brand, model, mileage, priceRange);
+
+        // Display the results in the modal
+        displayResults(filteredCars);
+        openModal();
+    });
+
+    // Handle form submission for Rent Car
+    document.getElementById('rentalForm').addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent the form from submitting
+
+        // Get form data
+        const year = document.getElementById('rentYear').value;
+        const brand = document.getElementById('rentBrand').value;
+        const model = document.getElementById('rentModel').value;
+        const mileage = document.getElementById('rentMileage').value;
+        const priceRange = document.getElementById('amount').value;
+
+        // Filter cars based on search criteria
+        const filteredCars = filterCars(year, brand, model, mileage, priceRange);
+
+        // Display the results in the modal
+        displayResults(filteredCars);
+        openModal();
+    });
+});
+
+// Initialize all sliders
+$(document).ready(function () {
+    // Rent A Car Sliders
+    initSlider(".price-range", "#amount", 1, 600000, [80000, 320000]);
+    initSlider(".car-price-range", "#caramount", 1, 600000, [80000, 320000]);
+    initSlider(".filter-price-range", "#filterAmount", 1, 500000, [100000, 300000]);
+
+    // Buy A Car Slider
+    initSlider(".buy-price-range", "#buyAmount", 1000, 500000, [10000, 200000]);
+});
+</script>

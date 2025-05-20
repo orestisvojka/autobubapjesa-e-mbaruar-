@@ -1,0 +1,33 @@
+
+AUTOBUBA Dashboard
+
+1. Dashboard - Complete
+2. Inventory - Complete
+3. Sales - Edit Sales Not Working
+4. Customers - Complete
+5. Calendar - Complete
+6. Settings - Incomplete
+
+
+AUTOBUBA Landing Page
+
+Front-End :
+
+Index - Few Translations Incomplete
+Cars - Search (Sidebar), Show And Sort Functionality Broken
+Blog - Incomplete
+Car Details - Few Details Incomplete
+About - Testimony Missing
+Work - Incomplete
+
+Footer & Header - Complete
+Call Button - Complete
+
+Test Drive - Styling Incomplete
+Report - Styling Incomplete
+Cart - Complete
+
+
+Back-End :
+
+Incomplete

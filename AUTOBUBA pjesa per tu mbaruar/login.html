@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loading.css">
+    <title>Car Shop - Login & Signup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .left-panel {
+            flex: 1;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 50px;
+            position: relative;
+        }
+
+        .left-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+
+        .left-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .left-panel h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .left-panel h1 span {
+            color: #ff0030;
+        }
+
+        .left-panel p {
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .right-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background-color: #fff;
+            position: relative;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .form-container {
+            transition: all 0.3s ease;
+        }
+
+        .login-form, .signup-form, .admin-login-form {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(20px);
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .logo h2 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .logo h2 span {
+            color: #ff0030;
+        }
+
+        .subtitle {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #e1e1e1;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: #ff0030;
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 8px;
+        }
+
+        .forgot-password {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            color: #ff0030;
+        }
+
+        .btn-auth {
+            width: 100%;
+            padding: 15px;
+            background-color: #ff0030;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-auth:hover {
+            background-color: #e6002b;
+        }
+
+        .btn-admin {
+            background-color: #333;
+        }
+
+        .btn-admin:hover {
+            background-color: #555;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #666;
+        }
+
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .social-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+        }
+
+        .facebook {
+            background-color: #3b5998;
+        }
+
+        .twitter {
+            background-color: #1da1f2;
+        }
+
+        .google {
+            background-color: #ea4335;
+        }
+
+        .auth-link {
+            text-align: center;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .auth-link a {
+            color: #ff0030;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .auth-link a:hover {
+            text-decoration: underline;
+        }
+
+        .settings-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #ff0030;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            font-size: 18px;
+        }
+
+        .error-message {
+            color: #ff0030;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .password-strength {
+            height: 5px;
+            margin-top: 5px;
+            border-radius: 5px;
+            background-color: #e1e1e1;
+            overflow: hidden;
+        }
+
+        .password-strength-bar {
+            height: 100%;
+            width: 0;
+            transition: width 0.3s, background-color 0.3s;
+        }
+
+        .admin-badge {
+            display: inline-block;
+            background-color: #333;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 3px;
+            margin-left: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .login-option-btn {
+            flex: 1;
+            padding: 10px;
+            background-color: transparent;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-option-btn.active {
+            background-color: #ff0030;
+            color: white;
+            border-color: #ff0030;
+        }
+
+        .login-option-btn:hover:not(.active) {
+            background-color: #f5f5f5;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                overflow-y: auto;
+            }
+
+            .left-panel {
+                flex: none;
+                height: 300px;
+                padding: 20px;
+            }
+
+            .right-panel {
+                flex: none;
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loading-container">
+      <!-- Speedometer -->
+      <div class="speedometer-container">
+        <div class="speedometer">
+          <div class="speedometer-scale">
+            <div class="scale-mark mark-0"><span>0</span></div>
+            <div class="scale-mark mark-20"><span>20</span></div>
+            <div class="scale-mark mark-40"><span>40</span></div>
+            <div class="scale-mark mark-60"><span>60</span></div>
+            <div class="scale-mark mark-80"><span>80</span></div>
+            <div class="scale-mark mark-100"><span>100</span></div>
+          </div>
+          <div class="needle-container">
+            <div class="needle"></div>
+            <div class="needle-center"></div>
+          </div>
+          <div class="speed-display">
+            <span id="speed-value">0</span>
+            <span class="speed-unit">km/h</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Loading Text -->
+      <div class="loading-text">
+        <span>L</span>
+        <span>O</span>
+        <span>A</span>
+        <span>D</span>
+        <span>I</span>
+        <span>N</span>
+        <span>G</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+      </div>
+      
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+      
+      <!-- AUTOBUBA Text -->
+      <div class="autobuba-text">AUTOBUBA</div>
+    </div>
+  </div>
+    <div class="left-panel">
+        <div class="left-content">
+            <h1>WELCOME TO <span>AUTOBUBA</span></h1>
+        </div>
+    </div>
+    <div class="right-panel">
+        <button class="settings-btn" id="back-btn">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="auth-container">
+            <div class="logo">
+                <h2><span>AUTO</span>BUBA</h2>
+            </div>
+            
+            <!-- Login Form -->
+            <div class="form-container login-form" id="loginForm">
+                <div class="subtitle">
+                    <p>Sign Into Your Account</p>
+                </div>
+                <div class="login-options">
+                    <button id="userLoginBtn" class="login-option-btn active">User Login</button>
+                    <button id="adminLoginBtn" class="login-option-btn">Admin Login</button>
+                </div>
+                <form id="loginFormElement">
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="loginEmail" placeholder="Email Address" required>
+                        <div class="error-message" id="loginEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                        <div class="error-message" id="loginPasswordError"></div>
+                    </div>
+                    <div class="form-footer">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password</a>
+                    </div>
+                    <button type="submit" class="btn-auth" id="loginButton">LOGIN</button>
+                </form>
+                <div class="divider">Or Login With</div>
+                <div class="social-login">
+                    <button class="social-btn facebook">Facebook</button>
+                    <button class="social-btn twitter">Twitter</button>
+                    <button class="social-btn google">Google</button>
+                </div>
+                <div class="auth-link">
+                    <p>Don't have an account? <a id="showSignup">Register here</a></p>
+                </div>
+            </div>
+            
+            <!-- Admin Login Form -->
+            <div class="form-container admin-login-form hidden" id="adminLoginForm">
+                <div class="subtitle">
+                    <p>Admin Login <span class="admin-badge">Restricted</span></p>
+                </div>
+                <form id="adminLoginFormElement">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="adminUsername" placeholder="Admin Username" required>
+                        <div class="error-message" id="adminUsernameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="adminPassword" placeholder="Admin Password" required>
+                        <div class="error-message" id="adminPasswordError"></div>
+                    </div>
+                    <div class="form-footer">
+                        <div class="remember-me">
+                            <input type="checkbox" id="adminRemember">
+                            <label for="adminRemember">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-password">Forgot Password</a>
+                    </div>
+                    <button type="submit" class="btn-auth btn-admin">ADMIN LOGIN</button>
+                </form>
+                <div class="auth-link">
+                    <p><a id="backToUserLogin">Back to User Login</a></p>
+                </div>
+            </div>
+            
+            <!-- Signup Form -->
+            <div class="form-container signup-form hidden" id="signupForm">
+                <div class="subtitle">
+                    <p>Create Your Account</p>
+                </div>
+                <form id="signupFormElement">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="fullName" placeholder="Full Name" required>
+                        <div class="error-message" id="fullNameError"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="signupEmail" placeholder="Email Address" required>
+                        <div class="error-message" id="signupEmailError"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="signupPassword" placeholder="Password" required>
+                        <div class="password-strength">
+                            <div class="password-strength-bar" id="passwordStrengthBar"></div>
+                        </div>
+                        <div class="error-message" id="signupPasswordError"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                        <div class="error-message" id="confirmPasswordError"></div>
+                    </div>
+                    <div class="form-footer">
+                        <div class="remember-me">
+                            <input type="checkbox" id="termsAgree" required>
+                            <label for="termsAgree">I agree to the Terms & Conditions</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-auth">SIGN UP</button>
+                </form>
+                <div class="divider">Or Sign Up With</div>
+                <div class="social-login">
+                    <button class="social-btn facebook">Facebook</button>
+                    <button class="social-btn twitter">Twitter</button>
+                    <button class="social-btn google">Google</button>
+                </div>
+                <div class="auth-link">
+                    <p>Already have an account? <a id="showLogin">Login here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle between login and signup forms
+        document.getElementById('showSignup').addEventListener('click', function() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('signupForm').classList.remove('hidden');
+            document.getElementById('adminLoginForm').classList.add('hidden');
+        });
+
+        document.getElementById('showLogin').addEventListener('click', function() {
+            document.getElementById('signupForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('adminLoginForm').classList.add('hidden');
+        });
+
+        // Toggle between user and admin login
+        document.getElementById('userLoginBtn').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('adminLoginBtn').classList.remove('active');
+            document.getElementById('loginFormElement').style.display = 'block';
+            document.getElementById('loginButton').innerHTML = 'LOGIN';
+            // Update the login button's onclick function to redirect to the user page
+            document.getElementById('loginButton').onclick = function() {
+                window.open('Car Upload Form.html', '_self');
+                return false;
+            };
+        });
+
+        document.getElementById('adminLoginBtn').addEventListener('click', function() {
+            this.classList.add('active');
+            document.getElementById('userLoginBtn').classList.remove('active');
+            document.getElementById('loginFormElement').style.display = 'block';
+            document.getElementById('loginButton').innerHTML = 'ADMIN LOGIN';
+            // Update the login button's onclick function to redirect to the admin dashboard
+            document.getElementById('loginButton').onclick = function() {
+                window.open('admin-dashboard.html', '_self');
+                return false;
+            };
+        });
+
+        document.getElementById('backToUserLogin').addEventListener('click', function() {
+            document.getElementById('adminLoginForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+        });
+
+        // Login form validation
+        document.getElementById('loginFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const remember = document.getElementById('remember').checked;
+            const isAdmin = document.getElementById('adminLoginBtn').classList.contains('active');
+            
+            // Email validation
+            if (!validateEmail(email)) {
+                document.getElementById('loginEmailError').textContent = 'Please enter a valid email address';
+                document.getElementById('loginEmailError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('loginEmailError').style.display = 'none';
+            }
+            
+            // Password validation
+            if (password.length < 6) {
+                document.getElementById('loginPasswordError').textContent = 'Password must be at least 6 characters';
+                document.getElementById('loginPasswordError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('loginPasswordError').style.display = 'none';
+            }
+            
+            if (isValid) {
+                // Here you would typically send these values to your server
+                console.log('Login attempt:', { email, password, remember, isAdmin });
+                
+                // For demo purposes, show an alert
+                if (isAdmin) {
+                    alert('Admin Login successful!');
+                    window.open('admin-dashboard.html', '_self');
+                } else {
+                    alert('Login successful!');
+                    window.open('Car Upload Form.html', '_self');
+                }
+            }
+        });
+
+        // Admin login form validation
+        document.getElementById('adminLoginFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            const remember = document.getElementById('adminRemember').checked;
+            
+            // Username validation
+            if (username.length < 3) {
+                document.getElementById('adminUsernameError').textContent = 'Please enter a valid admin username';
+                document.getElementById('adminUsernameError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('adminUsernameError').style.display = 'none';
+            }
+            
+            // Password validation
+            if (password.length < 8) {
+                document.getElementById('adminPasswordError').textContent = 'Admin password must be at least 8 characters';
+                document.getElementById('adminPasswordError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('adminPasswordError').style.display = 'none';
+            }
+            
+            if (isValid) {
+                // Here you would typically send these values to your server for verification
+                console.log('Admin login attempt:', { username, password, remember });
+                
+                // For demo purposes, show an alert and redirect
+                alert('Admin Login successful!');
+                window.open('admin-dashboard.html', '_self');
+            }
+        });
+
+        // Signup form validation
+        document.getElementById('signupFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const termsAgree = document.getElementById('termsAgree').checked;
+            
+            // Full name validation
+            if (fullName.length < 3) {
+                document.getElementById('fullNameError').textContent = 'Please enter your full name';
+                document.getElementById('fullNameError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('fullNameError').style.display = 'none';
+            }
+            
+            // Email validation
+            if (!validateEmail(email)) {
+                document.getElementById('signupEmailError').textContent = 'Please enter a valid email address';
+                document.getElementById('signupEmailError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('signupEmailError').style.display = 'none';
+            }
+            
+            // Password validation
+            if (password.length < 8) {
+                document.getElementById('signupPasswordError').textContent = 'Password must be at least 8 characters';
+                document.getElementById('signupPasswordError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('signupPasswordError').style.display = 'none';
+            }
+            
+            // Confirm password validation
+            if (password !== confirmPassword) {
+                document.getElementById('confirmPasswordError').textContent = 'Passwords do not match';
+                document.getElementById('confirmPasswordError').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('confirmPasswordError').style.display = 'none';
+            }
+            
+            // Terms agreement validation
+            if (!termsAgree) {
+                isValid = false;
+                // We don't show an error message for this as the browser will show a validation message
+            }
+            
+            if (isValid) {
+                // Here you would typically send these values to your server
+                console.log('Signup attempt:', { fullName, email, password, termsAgree });
+                
+                // For demo purposes, show an alert
+                alert('Signup successful!');
+                
+                // Switch to login form after successful signup
+                document.getElementById('signupForm').classList.add('hidden');
+                document.getElementById('loginForm').classList.remove('hidden');
+            }
+        });
+
+        // Password strength meter
+        document.getElementById('signupPassword').addEventListener('input', function() {
+            const password = this.value;
+            const strengthBar = document.getElementById('passwordStrengthBar');
+            
+            // Calculate password strength
+            let strength = 0;
+            if (password.length >= 8) strength += 25;
+            if (password.match(/[A-Z]/)) strength += 25;
+            if (password.match(/[0-9]/)) strength += 25;
+            if (password.match(/[^A-Za-z0-9]/)) strength += 25;
+            
+            // Update strength bar
+            strengthBar.style.width = strength + '%';
+            
+            // Change color based on strength
+            if (strength < 25) {
+                strengthBar.style.backgroundColor = '#ff0030';
+            } else if (strength < 50) {
+                strengthBar.style.backgroundColor = '#ff8c00';
+            } else if (strength < 75) {
+                strengthBar.style.backgroundColor = '#ffcc00';
+            } else {
+                strengthBar.style.backgroundColor = '#00cc00';
+            }
+        });
+
+        // Social login buttons
+        document.querySelectorAll('.social-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const provider = this.textContent.toLowerCase();
+                console.log(`Login/Signup with ${provider}`);
+                alert(`${provider.charAt(0).toUpperCase() + provider.slice(1)} authentication clicked`);
+                // Here you would redirect to the OAuth provider
+            });
+        });
+
+        // Email validation helper function
+        function validateEmail(email) {
+            const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        var back = document.getElementById("back-btn");
+        if(back){
+            back.addEventListener("click" , function(){
+                window.location.href = "index.html";
+            })
+        }
+    </script>
+    <script src="loading.js"></script>
+</body>
+</html>

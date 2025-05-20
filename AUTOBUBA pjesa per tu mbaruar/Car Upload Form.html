@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultra Modern Car Upload</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e60000;
+            --primary-hover: #ff1a1a;
+            --secondary-color: #1a1a1a;
+            --accent-color: #ff3333;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --border-color: #e9ecef;
+            --success-color: #38b000;
+            --error-color: #dc3545;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 15px 35px rgba(230, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            color: var(--dark-color);
+            line-height: 1.6;
+            padding: 30px 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, #000000 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+
+        header h1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 2.8rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 i {
+            color: var(--primary-color);
+        }
+
+        form {
+            margin-bottom: 30px;
+        }
+
+        .form-section {
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 30px;
+            background-color: white;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-section:hover {
+            box-shadow: var(--hover-shadow);
+            transform: translateY(-5px);
+        }
+
+        .form-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 20px 0 0 20px;
+        }
+
+        .form-section h2 {
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .form-section h2 i {
+            color: var(--primary-color);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 16px;
+            transition: var(--transition);
+            background-color: var(--light-color);
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(230, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon input {
+            padding-left: 50px;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #adb5bd;
+        }
+
+        .input-with-icon input:focus + i {
+            color: var(--primary-color);
+        }
+
+        .currency-selector {
+            display: flex;
+            gap: 15px;
+        }
+
+        .currency-option {
+            flex: 1;
+            position: relative;
+        }
+
+        .currency-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .currency-option label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background-color: var(--light-color);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .currency-option input[type="radio"]:checked + label {
+            background-color: rgba(230, 0, 0, 0.1);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .currency-option label:hover {
+            background-color: rgba(230, 0, 0, 0.05);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .radio-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .radio-container input {
+            margin-right: 10px;
+            accent-color: var(--primary-color);
+            width: 20px;
+            height: 20px;
+        }
+
+        .upload-container {
+            margin-top: 25px;
+        }
+
+        .upload-area {
+            border: 3px dashed var(--border-color);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            background-color: var(--light-color);
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(230, 0, 0, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .upload-area i {
+            font-size: 70px;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            transition: var(--transition);
+        }
+
+        .upload-area:hover i {
+            transform: scale(1.1);
+        }
+
+        .upload-area p {
+            margin-bottom: 25px;
+            color: var(--dark-color);
+            font-size: 1.3rem;
+        }
+
+        .upload-area p.small {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 20px;
+        }
+
+        .browse-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .browse-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .preview-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .preview-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            background-color: white;
+        }
+
+        .preview-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .preview-item img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .preview-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .preview-item .file-info {
+            padding: 12px;
+            background-color: white;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .preview-item .remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            transition: var(--transition);
+            opacity: 0;
+        }
+
+        .preview-item:hover .remove-btn {
+            opacity: 1;
+        }
+
+        .preview-item .remove-btn:hover {
+            background-color: var(--error-color);
+            transform: scale(1.1);
+        }
+
+        .form-actions {
+            padding: 35px;
+            display: flex;
+            gap: 20px;
+            justify-content: flex-end;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .submit-btn, .reset-btn {
+            padding: 15px 35px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(230, 0, 0, 0.2);
+        }
+
+        .reset-btn {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            border: 2px solid var(--border-color);
+        }
+
+        .reset-btn:hover {
+            background-color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .drag-over {
+            border-color: var(--primary-color);
+            background-color: rgba(230, 0, 0, 0.05);
+            transform: scale(1.02);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 0;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 550px;
+            width: 90%;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            animation: slideUp 0.4s ease;
+        }
+
+        .modal-header {
+            background-color: var(--success-color);
+            padding: 30px;
+            color: white;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: white;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .close-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .modal-body {
+            padding: 40px;
+        }
+
+        .modal-body h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .modal-body p {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+
+        .modal-btn {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-btn:hover {
+            background-color: #2d9900;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(56, 176, 0, 0.2);
+        }
+
+        .doc-preview {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background-color: white;
+            border-radius: 12px;
+        }
+
+        .doc-preview i {
+            font-size: 30px;
+            margin-right: 15px;
+            color: var(--primary-color);
+        }
+
+        .price-input-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .price-input-group input {
+            border-radius: 12px 0 0 12px;
+        }
+
+        .price-input-group .currency-symbol {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 0 12px 12px 0;
+            height: 54px;
+            font-weight: 600;
+        }
+
+        /* Custom range slider for kilometers */
+        .range-slider {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .range-slider input[type="range"] {
+            width: 100%;
+            height: 10px;
+            -webkit-appearance: none;
+            background: var(--border-color);
+            border-radius: 5px;
+            outline: none;
+            margin-bottom: 15px;
+        }
+
+        .range-slider input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 25px;
+            height: 25px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .range-slider input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .km-display {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .submit-btn, .reset-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .currency-selector {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-car"></i> Premium Car Upload</h1>
+        </header>
+        
+        <form id="carUploadForm">
+            <div class="form-section">
+                <h2><i class="fas fa-info-circle"></i> Car Details</h2>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="carMake">Car Make</label>
+                        <select id="carMake" required>
+                            <option value="">Select Make</option>
+                            <option value="Audi">Audi</option>
+                            <option value="BMW">BMW</option>
+                            <option value="Mercedes">Mercedes</option>
+                            <option value="Lexus">Lexus</option>
+                            <option value="Porsche">Porsche</option>
+                            <option value="Ferrari">Ferrari</option>
+                            <option value="Lamborghini">Lamborghini</option>
+                            <option value="Bentley">Bentley</option>
+                            <option value="Rolls-Royce">Rolls-Royce</option>
+                            <option value="Tesla">Tesla</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="carModel">Car Model</label>
+                        <input type="text" id="carModel" placeholder="Enter car model" required>
+                    </div>
+                </div>
+                
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="carType">Car Type</label>
+                        <select id="carType" required>
+                            <option value="">Select Type</option>
+                            <option value="Sedan">Sedan</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Coupe">Coupe</option>
+                            <option value="Convertible">Convertible</option>
+                            <option value="Sports Car">Sports Car</option>
+                            <option value="Luxury Sedan">Luxury Sedan</option>
+                            <option value="Electric">Electric</option>
+                            <option value="Hybrid">Hybrid</option>
+                            <option value="Supercar">Supercar</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="horsepower">Horsepower (HP)</label>
+                        <div class="input-with-icon">
+                            <input type="number" id="horsepower" placeholder="Enter horsepower" min="1" required>
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="kilometers">Kilometers Driven</label>
+                    <div class="km-display" id="kmDisplay">50,000 km</div>
+                    <div class="range-slider">
+                        <input type="range" id="kilometers" min="0" max="300000" step="1000" value="50000">
+                        <div class="range-values">
+                            <span>0 km</span>
+                            <span>300,000 km</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Listing Type</label>
+                    <div class="radio-group">
+                        <label class="radio-container">
+                            <input type="radio" name="listingType" value="sale" checked>
+                            <span class="radio-label">For Sale</span>
+                        </label>
+                        <label class="radio-container">
+                            <input type="radio" name="listingType" value="rent">
+                            <span class="radio-label">For Rent</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <div class="price-input-group">
+                        <input type="number" id="price" placeholder="Enter price" min="0" required>
+                        <div class="currency-symbol" id="currencySymbol">$</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Currency</label>
+                    <div class="currency-selector">
+                        <div class="currency-option">
+                            <input type="radio" id="usd" name="currency" value="usd" checked>
+                            <label for="usd"><i class="fas fa-dollar-sign"></i> USD</label>
+                        </div>
+                        <div class="currency-option">
+                            <input type="radio" id="eur" name="currency" value="eur">
+                            <label for="eur"><i class="fas fa-euro-sign"></i> EUR</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2><i class="fas fa-images"></i> Upload Images</h2>
+                <div class="upload-container" id="imageUploadContainer">
+                    <div class="upload-area" id="imageDropArea">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Drag & drop your stunning car images here</p>
+                        <button type="button" class="browse-btn" id="imageBrowseBtn">
+                            <i class="fas fa-folder-open"></i> Browse Gallery
+                        </button>
+                        <input type="file" id="imageFileInput" accept="image/*" multiple hidden>
+                        <p class="small">Maximum 5 high-quality images, 5MB each</p>
+                    </div>
+                    <div class="preview-container" id="imagePreviewContainer"></div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2><i class="fas fa-file-alt"></i> Upload Documents</h2>
+                <div class="upload-container" id="docUploadContainer">
+                    <div class="upload-area" id="docDropArea">
+                        <i class="fas fa-file-upload"></i>
+                        <p>Drag & drop your car documents here</p>
+                        <button type="button" class="browse-btn" id="docBrowseBtn">
+                            <i class="fas fa-folder-open"></i> Browse Files
+                        </button>
+                        <input type="file" id="docFileInput" accept=".pdf,.doc,.docx" multiple hidden>
+                        <p class="small">Registration, insurance, service records, etc.</p>
+                    </div>
+                    <div class="preview-container" id="docPreviewContainer"></div>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="reset" class="reset-btn">
+                    <i class="fas fa-undo"></i> Reset Form
+                </button>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-upload"></i> Submit Listing
+                </button>
+            </div>
+        </form>
+    </div>
+    
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close-btn">&times;</span>
+                <i class="fas fa-check-circle success-icon"></i>
+            </div>
+            <div class="modal-body">
+                <h2>Car Successfully Uploaded!</h2>
+                <p>Your luxury car listing has been submitted and is now live on our platform.</p>
+                <button class="modal-btn">
+                    <i class="fas fa-check"></i> Continue
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Image upload elements
+            const imageDropArea = document.getElementById('imageDropArea');
+            const imageFileInput = document.getElementById('imageFileInput');
+            const imageBrowseBtn = document.getElementById('imageBrowseBtn');
+            const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+            
+            // Document upload elements
+            const docDropArea = document.getElementById('docDropArea');
+            const docFileInput = document.getElementById('docFileInput');
+            const docBrowseBtn = document.getElementById('docBrowseBtn');
+            const docPreviewContainer = document.getElementById('docPreviewContainer');
+            
+            // Form and modal elements
+            const carUploadForm = document.getElementById('carUploadForm');
+            const successModal = document.getElementById('successModal');
+            const closeBtn = document.querySelector('.close-btn');
+            const modalBtn = document.querySelector('.modal-btn');
+            
+            // Kilometers slider
+            const kmSlider = document.getElementById('kilometers');
+            const kmDisplay = document.getElementById('kmDisplay');
+            
+            // Currency selector
+            const currencyRadios = document.querySelectorAll('input[name="currency"]');
+            const currencySymbol = document.getElementById('currencySymbol');
+            
+            // Update kilometers display
+            kmSlider.addEventListener('input', function() {
+                kmDisplay.textContent = Number(this.value).toLocaleString() + ' km';
+            });
+            
+            // Update currency symbol
+            currencyRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    currencySymbol.textContent = this.value === 'usd' ? '$' : '€';
+                });
+            });
+            
+            // Maximum file sizes and counts
+            const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+            const MAX_IMAGE_COUNT = 5;
+            const MAX_DOC_SIZE = 10 * 1024 * 1024; // 10MB
+            const MAX_DOC_COUNT = 3;
+            
+            // Image upload event listeners
+            imageBrowseBtn.addEventListener('click', () => imageFileInput.click());
+            
+            imageFileInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files, 'image');
+            });
+            
+            // Document upload event listeners
+            docBrowseBtn.addEventListener('click', () => docFileInput.click());
+            
+            docFileInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files, 'doc');
+            });
+            
+            // Drag and drop for images
+            setupDragAndDrop(imageDropArea, 'image');
+            
+            // Drag and drop for documents
+            setupDragAndDrop(docDropArea, 'doc');
+            
+            // Form submission
+            carUploadForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                if (validateForm()) {
+                    // In a real application, you would send the form data to a server here
+                    // For this example, we'll just show a success message
+                    showSuccessModal();
+                }
+            });
+            
+            // Close modal
+            closeBtn.addEventListener('click', closeModal);
+            modalBtn.addEventListener('click', closeModal);
+            window.addEventListener('click', (e) => {
+                if (e.target === successModal) {
+                    closeModal();
+                }
+            });
+            
+            // Setup drag and drop functionality
+            function setupDragAndDrop(dropArea, type) {
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    dropArea.addEventListener(eventName, preventDefaults, false);
+                });
+                
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    dropArea.addEventListener(eventName, () => {
+                        dropArea.classList.add('drag-over');
+                    }, false);
+                });
+                
+                ['dragleave', 'drop'].forEach(eventName => {
+                    dropArea.addEventListener(eventName, () => {
+                        dropArea.classList.remove('drag-over');
+                    }, false);
+                });
+                
+                dropArea.addEventListener('drop', (e) => {
+                    const dt = e.dataTransfer;
+                    const files = dt.files;
+                    handleFiles(files, type);
+                }, false);
+            }
+            
+            // Prevent default drag behaviors
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            // Handle uploaded files
+            function handleFiles(files, type) {
+    const fileArray = Array.from(files);
+    
+    if (type === 'image') {
+        // Check if adding these files would exceed the maximum count
+        const currentCount = imagePreviewContainer.querySelectorAll('.preview-item').length;
+        if (currentCount + fileArray.length > MAX_IMAGE_COUNT) {
+            alert(`You can only upload a maximum of ${MAX_IMAGE_COUNT} images.`);
+            return;
+        }
+        
+        fileArray.forEach(file => {
+            // Validate file type
+            if (!file.type.match('image.*')) {
+                alert('Please upload only image files.');
+                return;
+            }
+            
+            // Validate file size
+            if (file.size > MAX_IMAGE_SIZE) {
+                alert(`Image size should not exceed ${MAX_IMAGE_SIZE / (1024 * 1024)}MB.`);
+                return;
+            }
+            
+            // Create preview
+            createImagePreview(file);
+        });
+    } else if (type === 'doc') {
+        // Check if adding these files would exceed the maximum count
+        const currentCount = docPreviewContainer.querySelectorAll('.preview-item').length;
+        if (currentCount + fileArray.length > MAX_DOC_COUNT) {
+            alert(`You can only upload a maximum of ${MAX_DOC_COUNT} documents.`);
+            return;
+        }
+        
+        fileArray.forEach(file => {
+            // Validate file type
+            const validTypes = ['.pdf', '.doc', '.docx'];
+            const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+            
+            if (!validTypes.includes(fileExtension) && 
+                !file.type.match('application/pdf') && 
+                !file.type.match('application/msword') && 
+                !file.type.match('application/vnd.openxmlformats-officedocument.wordprocessingml.document')) {
+                alert('Please upload only PDF or Word documents.');
+                return;
+            }
+            
+            // Validate file size
+            if (file.size > MAX_DOC_SIZE) {
+                alert(`Document size should not exceed ${MAX_DOC_SIZE / (1024 * 1024)}MB.`);
+                return;
+            }
+            
+            // Create preview
+            createDocPreview(file);
+        });
+    }
+}
+            
+            // Create image preview
+            function createImagePreview(file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const previewItem = document.createElement('div');
+                    previewItem.className = 'preview-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = file.name;
+                    
+                    const fileInfo = document.createElement('div');
+                    fileInfo.className = 'file-info';
+                    fileInfo.textContent = file.name;
+                    
+                    const removeBtn = document.createElement('button');
+                    removeBtn.className = 'remove-btn';
+                    removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                    removeBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        previewItem.remove();
+                    });
+                    
+                    previewItem.appendChild(img);
+                    previewItem.appendChild(fileInfo);
+                    previewItem.appendChild(removeBtn);
+                    
+                    imagePreviewContainer.appendChild(previewItem);
+                };
+                
+                reader.readAsDataURL(file);
+            }
+            
+            // Create document preview
+            function createDocPreview(file) {
+                const previewItem = document.createElement('div');
+                previewItem.className = 'preview-item';
+                
+                const docPreview = document.createElement('div');
+                docPreview.className = 'doc-preview';
+                
+                // Choose icon based on file type
+                let iconClass = 'fas fa-file';
+                if (file.type.match('application/pdf')) {
+                    iconClass = 'fas fa-file-pdf';
+                } else if (file.type.match('application/msword') || 
+                          file.type.match('application/vnd.openxmlformats-officedocument.wordprocessingml.document')) {
+                    iconClass = 'fas fa-file-word';
+                }
+                
+                const icon = document.createElement('i');
+                icon.className = iconClass;
+                
+                const fileInfo = document.createElement('div');
+                fileInfo.className = 'file-info';
+                fileInfo.textContent = file.name;
+                
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'remove-btn';
+                removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                removeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    previewItem.remove();
+                });
+                
+                docPreview.appendChild(icon);
+                docPreview.appendChild(fileInfo);
+                
+                previewItem.appendChild(docPreview);
+                previewItem.appendChild(removeBtn);
+                
+                docPreviewContainer.appendChild(previewItem);
+            }
+            
+            // Validate form
+            function validateForm() {
+                // Check if at least one image is uploaded
+                if (imagePreviewContainer.querySelectorAll('.preview-item').length === 0) {
+                    alert('Please upload at least one image of the car.');
+                    return false;
+                }
+                
+                // All validations passed
+                return true;
+            }
+            
+            // Show success modal
+            function showSuccessModal() {
+                successModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            }
+            
+            // Close modal
+            function closeModal() {
+                successModal.style.display = 'none';
+                document.body.style.overflow = ''; // Restore scrolling
+                
+                // Reset form after successful submission
+                carUploadForm.reset();
+                
+                // Reset kilometers display
+                kmDisplay.textContent = '50,000 km';
+                kmSlider.value = 50000;
+                
+                // Reset currency symbol
+                currencySymbol.textContent = '$';
+                
+                // Clear previews
+                imagePreviewContainer.innerHTML = '';
+                docPreviewContainer.innerHTML = '';
+            }
+        });
+    </script>
+</body>
+</html>

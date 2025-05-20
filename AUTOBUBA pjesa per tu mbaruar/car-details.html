@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <!-- Flag Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <link rel="stylesheet" href="css/cart.css">
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #dc3545;
+            --secondary-color: #2d3436;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --gray-color: #6c757d;
+            --white-color: #ffffff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-color);
+            background-color: #f5f5f5;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn {
+            transition: var(--transition);
+            font-weight: 500;
+            border-radius: 4px;
+        }
+
+        .btn-danger {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
+        }
+
+        .btn-outline-danger {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-outline-danger:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.2);
+        }
+
+        /* Header Styles */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--white-color);
+            box-shadow: var(--shadow);
+        }
+
+        .navbar {
+            padding: 15px 0;
+        }
+
+        .navbar-brand img {
+            max-height: 60px;
+        }
+
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            padding: 0.5rem 1rem !important;
+            color: var(--dark-color) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link.underline::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 1rem;
+            right: 1rem;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: 0.65rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 50%;
+        }
+
+        /* Enhanced Language Dropdown Styles - Updated */
+        .header .language-dropdown {
+            margin-right: 15px;
+        }
+
+        /* Button styling */
+        .header .language-dropdown .btn-outline-danger {
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+            font-weight: 600;
+            border-width: 2px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, rgba(220, 53, 69, 0.05), rgba(220, 53, 69, 0));
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .header .language-dropdown .btn-outline-danger:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 12px rgba(220, 53, 69, 0.2);
+            background: linear-gradient(to right, rgba(220, 53, 69, 0.1), rgba(220, 53, 69, 0.02));
+        }
+
+        .header .language-dropdown .btn-outline-danger:active,
+        .header .language-dropdown .btn-outline-danger:focus {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(220, 53, 69, 0.15);
+        }
+
+        .header .language-dropdown .btn-outline-danger .fa-globe {
+            font-size: 1.1rem;
+            margin-right: 8px;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .header .language-dropdown .btn-outline-danger:hover .fa-globe {
+            transform: rotate(15deg);
+        }
+
+        .header .language-dropdown .dropdown-toggle::after {
+            margin-left: 8px;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        .header .language-dropdown .btn-outline-danger[aria-expanded="true"]::after {
+            transform: rotate(180deg);
+        }
+
+        /* Flag icon styling */
+        .header .language-dropdown .flag-icon {
+            width: 20px;
+            height: 15px;
+            display: inline-block;
+            margin-right: 0;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Dropdown menu styling */
+        .header .language-dropdown .dropdown-menu {
+            min-width: auto;
+            width: auto;
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem;
+            animation: dropdownFadeIn 0.3s ease;
+            margin-top: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        @keyframes dropdownFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Style the dropdown menu arrow */
+        .header .language-dropdown .dropdown-menu::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 20px;
+            width: 12px;
+            height: 12px;
+            background: white;
+            transform: rotate(45deg);
+            box-shadow: -3px -3px 5px rgba(0, 0, 0, 0.04);
+            z-index: -1;
+        }
+
+        /* Dropdown items - compact for flags */
+        .header .language-dropdown .dropdown-item {
+            padding: 0.5rem;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            margin-bottom: 0.25rem;
+        }
+
+        .header .language-dropdown .dropdown-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .header .language-dropdown .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .header .language-dropdown .dropdown-item.active {
+            background-color: rgba(220, 53, 69, 0.1);
+        }
+
+        .header .language-dropdown .dropdown-item .flag-icon {
+            display: inline-block;
+            width: 24px;
+            height: 18px;
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Button Styles */
+        .header-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-buttons .nav-link {
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 40px;
+            height: 40px;
+        }
+
+        #cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 0.65rem;
+            padding: 0.2rem 0.4rem;
+            color: white;
+        }
+        .breadcrumb-option{
+            background-image: url(img/cars/details/cd-1.jpg);
+        }
+
+
+        /* Responsive Styles */
+        @media (max-width: 991px) {
+            .navbar-nav {
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .header .language-dropdown,
+            .language-dropdown {
+                margin: 0.5rem 0;
+            }
+
+            .header .language-dropdown .dropdown-menu {
+                width: auto;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .header-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .header-buttons {
+                justify-content: space-around;
+                width: 100%;
+            }
+
+            .btn-sm {
+                font-size: 0.8rem;
+                padding: 0.25rem 0.5rem;
+            }
+
+            .header .language-dropdown {
+                margin: 0.5rem 0;
+            }
+
+            .header .language-dropdown .btn-outline-danger {
+                padding: 0.4rem 0.6rem;
+            }
+
+            .header .language-dropdown .dropdown-item {
+                padding: 0.4rem;
+            }
+             .dropdown{
+                margin-left: 10% !important;
+            }
+        }
+
+        /* Car Details Specific Styles */
+        .car__details__sidebar__btn .primary-btn {
+            width: 100%;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .car__details__sidebar__btn .primary-btn i {
+            margin-right: 8px;
+        }
+
+        .car-thumbs .ct {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .car-thumbs .ct:hover {
+            opacity: 0.8;
+        }
+
+        .car__details__sidebar__model ul li span:first-child {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .close-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        .close-button:hover {
+            background-color: #c82333;
+        }
+
+        .modal-number-container {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .modal-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--dark-color);
+            margin-right: 10px;
+        }
+
+        .modal-copy-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-copy-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--primary-color);
+        }
+
+        .copy-tooltip {
+            visibility: hidden;
+            opacity: 0;
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: all 0.3s;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        /* Phone Button Styles */
+        .phone-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+
+        .phone-logo {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
+            transition: all 0.3s;
+        }
+
+        .phone-logo:hover {
+            transform: scale(1.1);
+        }
+
+        .phone-icon {
+            color: white;
+            font-size: 1.5rem;
+        }
+        .primary-btn:hover{
+            color: black;
+
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="AUTOBUBA Car Details">
+    <meta name="keywords" content="cars, autobuba, vehicles">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/dfba5e2447.js" crossorigin="anonymous"></script>
+    <title data-translate="Car Details - AUTOBUBA">Car Details - AUTOBUBA</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="loading.css">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-container">
+            <!-- Speedometer -->
+            <div class="speedometer-container">
+                <div class="speedometer">
+                    <div class="speedometer-scale">
+                        <div class="scale-mark mark-0"><span>0</span></div>
+                        <div class="scale-mark mark-20"><span>20</span></div>
+                        <div class="scale-mark mark-40"><span>40</span></div>
+                        <div class="scale-mark mark-60"><span>60</span></div>
+                        <div class="scale-mark mark-80"><span>80</span></div>
+                        <div class="scale-mark mark-100"><span>100</span></div>
+                    </div>
+                    <div class="needle-container">
+                        <div class="needle"></div>
+                        <div class="needle-center"></div>
+                    </div>
+                    <div class="speed-display">
+                        <span id="speed-value">0</span>
+                        <span class="speed-unit" data-translate="km/h">km/h</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Text -->
+            <div class="loading-text">
+                <span data-translate="L">L</span>
+                <span data-translate="O">O</span>
+                <span data-translate="A">A</span>
+                <span data-translate="D">D</span>
+                <span data-translate="I">I</span>
+                <span data-translate="N">N</span>
+                <span data-translate="G">G</span>
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+
+            <!-- AUTOBUBA Text -->
+            <div class="autobuba-text">AUTOBUBA</div>
+        </div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="./index.html">
+                    <img src="img/logo zoom.png" alt="AUTOBUBA" class="img-fluid" style="max-height: 60px;">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-black text-decoration-none mx-4" href="car.html"
+                                data-translate="Cars">Cars</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black text-decoration-none mx-4" href="blog.html"
+                                data-translate="Blog">Blog</a>
+                        </li>
+                       
+                        <li class="nav-item">
+                            <a class="nav-link text-black text-decoration-none mx-4" href="about.html"
+                                data-translate="About">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-black text-decoration-none mx-4" href="contact.html"
+                                data-translate="Work">Work</a>
+                        </li>
+                    </ul>
+
+                    <!-- Language Dropdown (Updated for flag-only) -->
+                    <div class="language-dropdown mr-4">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-danger dropdown-toggle" type="button" id="languageDropdown"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="flag-icon flag-icon-gb"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                                <li><a class="dropdown-item language-option active" href="#" data-lang="en">
+                                        <span class="flag-icon flag-icon-gb"></span>
+                                    </a></li>
+                                <li><a class="dropdown-item language-option" href="#" data-lang="sq">
+                                        <span class="flag-icon flag-icon-al"></span>
+                                    </a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Cart, Test Drive, Report, Login Buttons -->
+                    <div class="header-buttons d-flex align-items-center">
+                        <a href="Book a Test Drive.html" class="nav-link mr-2 d-flex align-items-center"
+                            title="Book a Test Drive">
+                            <i class="fa-solid fa-car-side"></i>
+                        </a>
+                        <a id="cart" href="#" class="nav-link mr-2 position-relative d-flex align-items-center"
+                            title="Cart">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="badge bg-danger position-absolute" id="cart-count"></span>
+                        </a>
+                        <a href="report.html" class="nav-link mr-3 d-flex align-items-center" data-bs-toggle="tooltip"
+                            data-bs-placement="bottom" title="Report a problem">
+                            <i class="fa-solid fa-flag"></i>
+                        </a>
+                        <button onclick="window.open('login.html')" class="btn btn-danger d-none d-sm-inline-block"
+                            data-translate="Log In">Log In</button>
+                        <button onclick="window.open('login.html')"
+                            class="btn btn-sm btn-danger d-inline-block d-sm-none mt-2 w-100"
+                            data-translate="Log In">Log In</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- Header Section End -->
+
+    <!-- Breadcrumb End -->
+    <div class="breadcrumb-option set-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2 data-translate="Car Details">Car Details</h2>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html"><i class="fa fa-home"></i> <span
+                                    data-translate="Home">Home</span></a>
+                            <a href="#" data-translate="Car Details">Car Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Begin -->
+
+    <!-- Car Details Section Begin -->
+    <section class="car-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="car__details__pic">
+                        <div class="car__details__pic__large">
+                            <img class="car-big-img" src="img/cars/details/cd-1.jpg" alt="">
+                        </div>
+                        <div class="car-thumbs">
+                            <div class="car-thumbs-track car__thumb__slider owl-carousel">
+                                <div class="ct" data-imgbigurl="img/cars/details/cd-2.jpg"><img
+                                        src="img/cars/details/sm-1.jpg" alt=""></div>
+                                <div class="ct" data-imgbigurl="img/cars/details/cd-3.jpg"><img
+                                        src="img/cars/details/sm-2.jpg" alt=""></div>
+                                <div class="ct" data-imgbigurl="img/cars/details/cd-4.jpg"><img
+                                        src="img/cars/details/sm-3.jpg" alt=""></div>
+                                <div class="ct" data-imgbigurl="img/cars/details/cd-5.jpg"><img
+                                        src="img/cars/details/sm-4.jpg" alt=""></div>
+                                <div class="ct" data-imgbigurl="img/cars/details/cd-6.jpg"><img
+                                        src="img/cars/details/sm-5.jpg" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="car__details__tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
+                                    data-translate="Vehicle Overview">Vehicle Overview</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
+                                    data-translate="Technical">Technical</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
+                                    data-translate="Features & Options">Features & Options</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab"
+                                    data-translate="Vehicle Location">Vehicle Location</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="car__details__tab__info">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="car__details__tab__info__item">
+                                                <h5 data-translate="General Information">General Information</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Welcome to our car marketplace, where you can find vehicles for every need and budget.">Welcome
+                                                            to our car marketplace, where you can find vehicles for
+                                                            every need and budget.</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="We offer a wide selection of new and used cars from trusted sellers.">We
+                                                            offer a wide selection of new and used cars from trusted
+                                                            sellers.</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Easily filter cars by brand, price, fuel type, and more.">Easily
+                                                            filter cars by brand, price, fuel type, and more.</span>
+                                                    </li>
+                                                   
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="car__details__tab__info__item">
+                                                <h5 data-translate="General Information">General Information</h5>
+                                                <ul>
+                                                     <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Each listing includes detailed specifications and high-quality photos.">Each
+                                                            listing includes detailed specifications and high-quality
+                                                            photos.</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="You can contact sellers directly through our platform.">You
+                                                            can contact sellers directly through our platform.</span>
+                                                    </li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="We verify all listings to ensure safety and reliability.">We
+                                                            verify all listings to ensure safety and reliability.</span>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__details__tab__feature">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Interior Design">Interior Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Auxiliary heating">Auxiliary heating</span>
+                                                    </li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Bluetooth">Bluetooth</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="CD player">CD player</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Central locking">Central locking</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Safety Design">Safety Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Head-up display">Head-up display</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="MP3 interface">MP3 interface</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Navigation system">Navigation system</span>
+                                                    </li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Panoramic roof">Panoramic roof</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Extra Design">Extra Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Alloy wheels">Alloy wheels</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Electric side mirror">Electric side
+                                                            mirror</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Sports package">Sports package</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Sports suspension">Sports suspension</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Extra Design">Extra Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="MP3 interface">MP3 interface</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Navigation system">Navigation system</span>
+                                                    </li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Panoramic roof">Panoramic roof</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Parking sensors">Parking sensors</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div class="car__details__tab__info">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="car__details__tab__info__item">
+                                                <h5 data-translate="General Information">General Information</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Pellentesque lacus urna, feugiat non consectetur nec">Pellentesque
+                                                            lacus urna, feugiat non consectetur nec</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Aliquam sem neque, efficitur atero lectus vitae">Aliquam
+                                                            sem neque, efficitur atero lectus vitae</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Pellentesque erat libero, eleifend sit amet felis ido">Pellentesque
+                                                            erat libero, eleifend sit amet felis ido</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Maecenas eget consectetur quam. Vestibulum ligula">Maecenas
+                                                            eget consectetur quam. Vestibulum ligula</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Praesent lorem sapien, vestibulum eget aliquet et">Praesent
+                                                            lorem sapien, vestibulum eget aliquet et</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="car__details__tab__info__item">
+                                                <h5 data-translate="General Information">General Information</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Pellentesque lacus urna, feugiat non consectetur nec">Pellentesque
+                                                            lacus urna, feugiat non consectetur nec</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Aliquam sem neque, efficitur atero lectus vitae">Aliquam
+                                                            sem neque, efficitur atero lectus vitae</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Pellentesque erat libero, eleifend sit amet felis ido">Pellentesque
+                                                            erat libero, eleifend sit amet felis ido</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Maecenas eget consectetur quam. Vestibulum ligula">Maecenas
+                                                            eget consectetur quam. Vestibulum ligula</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Praesent lorem sapien, vestibulum eget aliquet et">Praesent
+                                                            lorem sapien, vestibulum eget aliquet et</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__details__tab__feature">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Interior Design">Interior Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Auxiliary heating">Auxiliary heating</span>
+                                                    </li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Bluetooth">Bluetooth</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="CD player">CD player</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Central locking">Central locking</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Safety Design">Safety Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Head-up display">Head-up display</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="MP3 interface">MP3 interface</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Navigation system">Navigation system</span>
+                                                    </li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Panoramic roof">Panoramic roof</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Extra Design">Extra Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Alloy wheels">Alloy wheels</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Electric side mirror">Electric side
+                                                            mirror</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Sports package">Sports package</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Sports suspension">Sports suspension</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Extra Design">Extra Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="MP3 interface">MP3 interface</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Navigation system">Navigation system</span>
+                                                    </li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Panoramic roof">Panoramic roof</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Parking sensors">Parking sensors</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-3" role="tabpanel">
+                                <div class="car__details__tab__info">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="car__details__tab__info__item">
+                                                <h5 data-translate="General Information">General Information</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Pellentesque lacus urna, feugiat non consectetur nec">Pellentesque
+                                                            lacus urna, feugiat non consectetur nec</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Aliquam sem neque, efficitur atero lectus vitae">Aliquam
+                                                            sem neque, efficitur atero lectus vitae</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Pellentesque erat libero, eleifend sit amet felis ido">Pellentesque
+                                                            erat libero, eleifend sit amet felis ido</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Maecenas eget consectetur quam. Vestibulum ligula">Maecenas
+                                                            eget consectetur quam. Vestibulum ligula</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Praesent lorem sapien, vestibulum eget aliquet et">Praesent
+                                                            lorem sapien, vestibulum eget aliquet et</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="car__details__tab__info__item">
+                                                <h5 data-translate="General Information">General Information</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Pellentesque lacus urna, feugiat non consectetur nec">Pellentesque
+                                                            lacus urna, feugiat non consectetur nec</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Aliquam sem neque, efficitur atero lectus vitae">Aliquam
+                                                            sem neque, efficitur atero lectus vitae</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Pellentesque erat libero, eleifend sit amet felis ido">Pellentesque
+                                                            erat libero, eleifend sit amet felis ido</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Maecenas eget consectetur quam. Vestibulum ligula">Maecenas
+                                                            eget consectetur quam. Vestibulum ligula</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Praesent lorem sapien, vestibulum eget aliquet et">Praesent
+                                                            lorem sapien, vestibulum eget aliquet et</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__details__tab__feature">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Interior Design">Interior Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Auxiliary heating">Auxiliary heating</span>
+                                                    </li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Bluetooth">Bluetooth</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="CD player">CD player</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Central locking">Central locking</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Safety Design">Safety Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Head-up display">Head-up display</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="MP3 interface">MP3 interface</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Navigation system">Navigation system</span>
+                                                    </li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Panoramic roof">Panoramic roof</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Extra Design">Extra Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Alloy wheels">Alloy wheels</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Electric side mirror">Electric side
+                                                            mirror</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Sports package">Sports package</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Sports suspension">Sports suspension</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Extra Design">Extra Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="MP3 interface">MP3 interface</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Navigation system">Navigation system</span>
+                                                    </li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Panoramic roof">Panoramic roof</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Parking sensors">Parking sensors</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="tabs-4" role="tabpanel">
+                                <div class="car__details__tab__info">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="car__details__tab__info__item">
+                                                <h5 data-translate="General Information">General Information</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Pellentesque lacus urna, feugiat non consectetur nec">Pellentesque
+                                                            lacus urna, feugiat non consectetur nec</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Aliquam sem neque, efficitur atero lectus vitae">Aliquam
+                                                            sem neque, efficitur atero lectus vitae</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Pellentesque erat libero, eleifend sit amet felis ido">Pellentesque
+                                                            erat libero, eleifend sit amet felis ido</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Maecenas eget consectetur quam. Vestibulum ligula">Maecenas
+                                                            eget consectetur quam. Vestibulum ligula</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Praesent lorem sapien, vestibulum eget aliquet et">Praesent
+                                                            lorem sapien, vestibulum eget aliquet et</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="car__details__tab__info__item">
+                                                <h5 data-translate="General Information">General Information</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Pellentesque lacus urna, feugiat non consectetur nec">Pellentesque
+                                                            lacus urna, feugiat non consectetur nec</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Aliquam sem neque, efficitur atero lectus vitae">Aliquam
+                                                            sem neque, efficitur atero lectus vitae</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Pellentesque erat libero, eleifend sit amet felis ido">Pellentesque
+                                                            erat libero, eleifend sit amet felis ido</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Maecenas eget consectetur quam. Vestibulum ligula">Maecenas
+                                                            eget consectetur quam. Vestibulum ligula</span></li>
+                                                    <li><i class="fa fa-check"></i> <span
+                                                            data-translate="Praesent lorem sapien, vestibulum eget aliquet et">Praesent
+                                                            lorem sapien, vestibulum eget aliquet et</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="car__details__tab__feature">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Interior Design">Interior Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Auxiliary heating">Auxiliary heating</span>
+                                                    </li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Bluetooth">Bluetooth</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="CD player">CD player</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Central locking">Central locking</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Safety Design">Safety Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Head-up display">Head-up display</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="MP3 interface">MP3 interface</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Navigation system">Navigation system</span>
+                                                    </li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Panoramic roof">Panoramic roof</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Extra Design">Extra Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Alloy wheels">Alloy wheels</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Electric side mirror">Electric side
+                                                            mirror</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Sports package">Sports package</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Sports suspension">Sports suspension</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3 col-md-6 col-sm-6">
+                                            <div class="car__details__tab__feature__item">
+                                                <h5 data-translate="Extra Design">Extra Design</h5>
+                                                <ul>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="MP3 interface">MP3 interface</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Navigation system">Navigation system</span>
+                                                    </li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Panoramic roof">Panoramic roof</span></li>
+                                                    <li><i class="fa fa-check-circle"></i> <span
+                                                            data-translate="Parking sensors">Parking sensors</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="car__details__sidebar">
+                        <div class="car__details__sidebar__model">
+                            <ul>
+                                <li><span data-translate="Porsche Cayenne Turbo S">Porsche Cayenne Turbo S</span></li>
+                                <li> <span>2019</span></li>
+                            </ul>
+                            <ul>
+                                <li><span data-translate="Vin">Vin</span> <span>3VWKM245686</span></li>
+                            </ul>
+                        </div>
+                        <div class="car__details__sidebar__payment">
+                            <ul>
+                                <li><span data-translate="Price">Price</span> <span>$117,000</span></li>
+                            </ul>
+                            <a href="payment/car-checkout.html" class="primary-btn"><i class="fa fa-credit-card"></i>
+                                <span data-translate="Purchase">Purchase</span></a>
+                            <a href="payment/car-checkout.html" class="primary-btn sidebar-btn"><i
+                                    class="fa fa-sliders"></i> <span data-translate="Build Payment">Build
+                                    Payment</span></a>
+                            <a href="#" class="primary-btn sidebar-btn"><i class="fa fa-download"></i> <span
+                                    data-translate="Vehicle Documents">Vehicle Documents</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Car Details Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer set-bg" style="background: url(img/footer-bg.jpg);">
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <img src="img/logo zoom.png" alt="Autobuba Logo" class="img-fluid">
+                        </div>
+                         <div class="footer__contact-box">
+                            <p><i class="fa fa-envelope"></i> autobuba2025@gmail.com</p>
+                            <p><i class="fa fa-phone"></i> +355 69 311 3209</p>
+                        </div>
+                        <div class="footer__social">
+                            <a href="https://www.tiktok.com/@autobuba1" class="social-btn tiktok" target="_blank">
+                                <i class="bi bi-tiktok"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/auto_buba?igsh=MWg1b213Y3oxeG1ydg=="
+                                class="social-btn instagram" target="_blank">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="footer__widget">
+                        <h5 data-translate="Navigation">Navigation</h5>
+                        <ul class="list-unstyled footer-links">
+                            <li><a href="contact.html" class="text-decoration-none"><i class="fa fa-angle-right"></i>
+                                    <span data-translate="Contact Us">Contact Us</span></a></li>
+                            <li><a href="car.html" class="text-decoration-none"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Cars">Cars</span></a></li>
+                            <li><a href="blog.html" class="text-decoration-none"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Blog">Blog</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="footer__widget">
+                        <h5 data-translate="Cars">Cars</h5>
+                        <ul class="list-unstyled footer-links">
+                            <li><a href="#" class="text-decoration-none"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Hatchback">Hatchback</span></a></li>
+                            <li><a href="#" class="text-decoration-none"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Sedan">Sedan</span></a></li>
+                            <li><a href="#" class="text-decoration-none"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="SUV">SUV</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer__brand">
+                        <h5 data-translate="Learn">Learn</h5>
+                        <ul class="list-unstyled footer-links">
+                            <li><a href="about.html" class="text-decoration-none"><i class="fa fa-angle-right"></i>
+                                    <span data-translate="About Us">About Us</span></a></li>
+                            <li><a href="#chooseUs" class="text-decoration-none"><i class="fa fa-angle-right"></i> <span
+                                        data-translate="Why Us ?">Why Us ?</span></a></li>
+                            <li><a href="#trustedName" class="text-decoration-none"><i class="fa fa-angle-right"></i>
+                                    <span data-translate="Who are we ?">Who are we ?</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p class="copyright">© <span
+                                data-translate="Copyright 2025 AUTOBUBA. All Rights Reserved.">Copyright 2025 QUOLYTECH.
+                                All Rights Reserved.</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Simple Phone Button -->
+    <div class="phone-container">
+        <div class="phone-logo" id="phoneLogo">
+            <div class="phone-icon">
+                <i class="fa-solid fa-phone"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <h2 class="modal-title" data-translate="Contact Information">Contact Information</h2>
+            <p data-translate="Please call us at:">Please call us at:</p>
+            <div class="modal-number-container">
+                <a href="tel:+69 69 690 6969" class="modal-number" id="phoneNumber">+355 69 311 3209</a>
+                <button class="modal-copy-button" id="modalCopyButton">
+                    <svg class="modal-copy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path
+                            d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z" />
+                    </svg>
+                </button>
+                <span class="copy-tooltip" id="modalTooltip" data-translate="Copied to clipboard!">Copied to
+                    clipboard!</span>
+            </div>
+            <button class="close-button" id="closeModal" data-translate="Close">Close</button>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartCars">
+        <div class="cart-header">
+            <h3 data-translate="Your Cart">Your Cart</h3>
+            <button id="closeCartdisplay" class="close-cart">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-body" id="selectedCars">
+            <!-- Cart items will be inserted here dynamically -->
+        </div>
+    </div>
+
+    <!-- Js Plugins -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="loading.js"></script>
+    <script src="js/hero.js"></script>
+    <script src="js/index-language-selector.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/cart.js"></script>
+
+
+
+    <script>
+        // Translation dictionary
+        const translations = {
+            en: {
+                // Header
+                "Cars": "Cars",
+                "Blog": "Blog",
+                "Car Details": "Car Details",
+                "About": "About",
+                "Work": "Work",
+                "Log In": "Log In",
+                "Book a Test Drive": "Book a Test Drive",
+                "Cart": "Cart",
+                "Report a problem": "Report a problem",
+
+                // Loading screen
+                "km/h": "km/h",
+                "L": "L",
+                "O": "O",
+                "A": "A",
+                "D": "D",
+                "I": "I",
+                "N": "N",
+                "G": "G",
+
+                // Breadcrumb
+                "Home": "Home",
+                "Car Details": "Car Details",
+
+                // Car Details Content
+                "Porsche Cayenne Turbo S": "Porsche Cayenne Turbo S",
+                "Vehicle Overview": "Vehicle Overview",
+                "Technical": "Technical",
+                "Features & Options": "Features & Options",
+                "Vehicle Location": "Vehicle Location",
+                "General Information": "General Information",
+                "Pellentesque lacus urna, feugiat non consectetur nec": "Pellentesque lacus urna, feugiat non consectetur nec",
+                "Aliquam sem neque, efficitur atero lectus vitae": "Aliquam sem neque, efficitur atero lectus vitae",
+                "Pellentesque erat libero, eleifend sit amet felis ido": "Pellentesque erat libero, eleifend sit amet felis ido",
+                "Maecenas eget consectetur quam. Vestibulum ligula": "Maecenas eget consectetur quam. Vestibulum ligula",
+                "Praesent lorem sapien, vestibulum eget aliquet et": "Praesent lorem sapien, vestibulum eget aliquet et",
+                "Interior Design": "Interior Design",
+                "Auxiliary heating": "Auxiliary heating",
+                "Bluetooth": "Bluetooth",
+                "CD player": "CD player",
+                "Central locking": "Central locking",
+                "Safety Design": "Safety Design",
+                "Head-up display": "Head-up display",
+                "MP3 interface": "MP3 interface",
+                "Navigation system": "Navigation system",
+                "Panoramic roof": "Panoramic roof",
+                "Extra Design": "Extra Design",
+                "Alloy wheels": "Alloy wheels",
+                "Electric side mirror": "Electric side mirror",
+                "Sports package": "Sports package",
+                "Sports suspension": "Sports suspension",
+                "Parking sensors": "Parking sensors",
+                "Vin": "Vin",
+                "Price": "Price",
+                "Purchase": "Purchase",
+                "Build Payment": "Build Payment",
+                "Vehicle Documents": "Vehicle Documents",
+
+                // Footer
+                "Navigation": "Navigation",
+                "Contact Us": "Contact Us",
+                "Hatchback": "Hatchback",
+                "Sedan": "Sedan",
+                "SUV": "SUV",
+                "Learn": "Learn",
+                "About Us": "About Us",
+                "Why Us ?": "Why Us ?",
+                "Who are we ?": "Who are we ?",
+                "Copyright 2025 AUTOBUBA. All Rights Reserved.": "Copyright 2025 AUTOBUBA. All Rights Reserved.",
+
+                // Modal
+                "Contact Information": "Contact Information",
+                "Please call us at:": "Please call us at:",
+                "Copied to clipboard!": "Copied to clipboard!",
+                "Close": "Close",
+                "Welcome to our car marketplace, where you can find vehicles for every need and budget.": "Welcome to our car marketplace, where you can find vehicles for every need and budget.",
+                "We offer a wide selection of new and used cars from trusted sellers.":"We offer a wide selection of new and used cars from trusted sellers.",
+                "Easily filter cars by brand, price, fuel type, and more.":"Easily filter cars by brand, price, fuel type, and more.",
+                 "Each listing includes detailed specifications and high-quality photos.":"Each listing includes detailed specifications and high-quality photos.",
+                 "You can contact sellers directly through our platform.":"You can contact sellers directly through our platform.",
+                 "We verify all listings to ensure safety and reliability.":"We verify all listings to ensure safety and reliability.",
+            },
+            sq: {
+                // Header
+                "Cars": "Makinat",
+                "Blog": "Blogu",
+                "Car Details": "Detajet e Makinës",
+                "About": "Rreth Nesh",
+                "Work": "Puna",
+                "Log In": "Hyr",
+                "Book a Test Drive": "Rezervoni një Provë Drejtimi",
+                "Cart": "Shporta",
+                "Report a problem": "Raportoni një problem",
+
+                // Loading screen
+                "km/h": "km/h",
+                "L": "L",
+                "O": "O",
+                "A": "A",
+                "D": "D",
+                "I": "I",
+                "N": "N",
+                "G": "G",
+
+                // Breadcrumb
+                "Home": "Kryefaqja",
+                "Car Details": "Detajet e Makinës",
+
+                // Car Details Content
+                "Porsche Cayenne Turbo S": "Porsche Cayenne Turbo S",
+                "Vehicle Overview": "Përmbledhje e Automjetit",
+                "Technical": "Teknike",
+                "Features & Options": "Veçori & Opsione",
+                "Vehicle Location": "Vendndodhja e Automjetit",
+                "General Information": "Informacion i Përgjithshëm",
+                "Pellentesque lacus urna, feugiat non consectetur nec": "Pellentesque lacus urna, feugiat non consectetur nec",
+                "Aliquam sem neque, efficitur atero lectus vitae": "Aliquam sem neque, efficitur atero lectus vitae",
+                "Pellentesque erat libero, eleifend sit amet felis ido": "Pellentesque erat libero, eleifend sit amet felis ido",
+                "Maecenas eget consectetur quam. Vestibulum ligula": "Maecenas eget consectetur quam. Vestibulum ligula",
+                "Praesent lorem sapien, vestibulum eget aliquet et": "Praesent lorem sapien, vestibulum eget aliquet et",
+                "Interior Design": "Dizajni i Brendshëm",
+                "Auxiliary heating": "Ngrohje ndihmëse",
+                "Bluetooth": "Bluetooth",
+                "CD player": "CD player",
+                "Central locking": "Kyçja qendrore",
+                "Safety Design": "Dizajni i Sigurisë",
+                "Head-up display": "Ekran kokë-lart",
+                "MP3 interface": "Ndërfaqe MP3",
+                "Navigation system": "Sistem navigimi",
+                "Panoramic roof": "Çati panoramike",
+                "Extra Design": "Dizajn Shtesë",
+                "Alloy wheels": "Rrota aliazh",
+                "Electric side mirror": "Pasqyrë anësore elektrike",
+                "Sports package": "Paketë sportive",
+                "Sports suspension": "Pezullim sportiv",
+                "Parking sensors": "Senzorë parkimi",
+                "Vin": "Vin",
+                "Price": "Çmimi",
+                "Purchase": "Blej",
+                "Build Payment": "Bëj Pagesën",
+                "Vehicle Documents": "Dokumentet e Automjetit",
+
+                // Footer
+                "Navigation": "Navigimi",
+                "Contact Us": "Na Kontaktoni",
+                "Hatchback": "Hatchback",
+                "Sedan": "Sedan",
+                "SUV": "SUV",
+                "Learn": "Mëso",
+                "About Us": "Rreth Nesh",
+                "Why Us ?": "Pse Ne ?",
+                "Who are we ?": "Kush jemi ne ?",
+                "Copyright 2025 AUTOBUBA. All Rights Reserved.": "Copyright 2025 AUTOBUBA. Të gjitha të drejtat e rezervuara.",
+
+                // Modal
+                "Contact Information": "Informacioni i Kontaktit",
+                "Please call us at:": "Ju lutemi na telefononi në:",
+                "Copied to clipboard!": "U kopjua në clipboard!",
+                "Close": "Mbyll",
+                "Welcome to our car marketplace, where you can find vehicles for every need and budget.": "Mirësevini në tregun tonë të makinave, ku gjeni mjete për çdo nevojë dhe buxhet.",
+                "We offer a wide selection of new and used cars from trusted sellers.":"Ne ofrojmë një përzgjedhje të gjerë makinash të reja dhe të përdorura nga shitës të besuar.",
+                "Easily filter cars by brand, price, fuel type, and more.":"Filtroni lehtësisht makinat sipas markës, çmimit, llojit të karburantit dhe më shumë.",
+                 "Each listing includes detailed specifications and high-quality photos.":"Çdo njoftim përmban specifika të detajuara dhe foto me cilësi të lartë.",
+                  "You can contact sellers directly through our platform.":"Kontaktoni direkt me shitësit përmes platformës sonë.",
+                  "We verify all listings to ensure safety and reliability.":"Ne verifikojmë të gjitha njoftimet për siguri dhe besueshmëri",
+                }
+        };
+
+        $(document).ready(function () {
+            // Initialize owl carousel without autoplay
+            $(".car__item__pic__slider").owlCarousel({
+                loop: true,
+                margin: 0,
+                items: 1,
+                dots: true,
+                nav: true,
+                navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+                smartSpeed: 1200,
+                autoHeight: false,
+                autoplay: false // Removed autoplay
+            });
+
+            // Set initial language
+            let currentLanguage = localStorage.getItem('language') || 'en';
+            applyLanguage(currentLanguage);
+
+            // Language selector functionality
+            $('.language-option').click(function (e) {
+                e.preventDefault();
+                const lang = $(this).data('lang');
+                currentLanguage = lang;
+                localStorage.setItem('language', lang);
+                applyLanguage(lang);
+
+                // Update active state
+                $('.language-option').removeClass('active');
+                $(this).addClass('active');
+
+                // Update flag icon
+                $('#languageDropdown').html($(this).html());
+            });
+
+            // Apply language translations
+            function applyLanguage(lang) {
+                $('[data-translate]').each(function () {
+                    const key = $(this).data('translate');
+                    if (translations[lang] && translations[lang][key]) {
+                        $(this).text(translations[lang][key]);
+                    }
+                });
+
+                // Handle placeholders
+                $('[data-translate-placeholder]').each(function () {
+                    const key = $(this).data('translate-placeholder');
+                    if (translations[lang] && translations[lang][key]) {
+                        $(this).attr('placeholder', translations[lang][key]);
+                    }
+                });
+            }
+        });
+
+
+    </script>
+
+    </script>
+    <script src="js/cart.js"></script>
+</body>
+
+</html>
